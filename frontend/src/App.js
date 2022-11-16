@@ -8,7 +8,7 @@ function App() {
   // Modify the current state by setting the new data to
   // the response from the backend
   useEffect(()=>{
-    fetch('http://localhost:5000/articles',{
+    fetch('http://127.0.0.1:5000/articles',{
       'methods':'GET',
       headers : {
         'Content-Type':'application/json'

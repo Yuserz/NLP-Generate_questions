@@ -11,7 +11,7 @@ python -m venv venv
           
 **Windows** 
 
-``` source venv\bin\activate```
+``` source venv/bin/activate```
           
 ### 3 .Install the requirements
 
