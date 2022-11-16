@@ -3,8 +3,7 @@
 ### Installation
                               
 ```bash
-git clone https://github.com/Dev-Elie/Connecting-React-Frontend-to-a-Flask-Backend.git
-cd Connecting-React-Frontend-to-a-Flask-Backend/backend
+cd backend
 python -m venv venv
 ```
   
