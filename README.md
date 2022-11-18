@@ -8,8 +8,6 @@ python -m venv venv
 ```
   
 ### 2 .Activate the environment
-          
-**Windows** 
 
 ```source venv/bin/activate```
 or
@@ -19,14 +17,10 @@ or
 
 ### 3 .Install the requirements
 
-Applies for windows/macOS/Linux
-
 ```pip install -r requirements.txt```
 
 
 ### 4 .Migrate/Create a database - Optional during initial set up
-
-Applies for windows/macOS/Linux
 
 ```python manage.py```
 
