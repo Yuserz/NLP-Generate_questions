@@ -11,13 +11,18 @@ python -m venv venv
           
 **Windows** 
 
-``` source venv/bin/activate```
-          
+```source venv/bin/activate```
+or
+
+```venv/Scripts/activate ```
+
+
 ### 3 .Install the requirements
 
 Applies for windows/macOS/Linux
 
 ```pip install -r requirements.txt```
+
 
 ### 4 .Migrate/Create a database - Optional during initial set up
 
@@ -25,14 +30,17 @@ Applies for windows/macOS/Linux
 
 ```python manage.py```
 
+
 ### 5. Run the application 
+
+`python routes.py`
+
+OR 
 
 ```
 set FLASK_APP=routes
 flask run
 ```
-OR 
-`python routes.py`
 
 -------------------------------------------------------------------------------------------------------------------
 <h1>## Frontend - React</h1>
