@@ -20,6 +20,8 @@ def initialize():
     AModel = AutoModelWithLMHead.from_pretrained(AModel_name)
     ATokenizer = AutoTokenizer.from_pretrained(AModel_name)
 
+    nltk.download('averaged_perceptron_tagger')
+
 def validateInitialization():
     if not QModel or not AModel or not QTokenizer or not ATokenizer:
         initialize()
@@ -44,6 +46,53 @@ def getAnswer(question, context):
 
     return output
 
+def getChoices(answer):
+    choices = []
+    choices.append(answer)
+    
+    # check if answer contains numbers
+    if any(i.isdigit() for i in answer):
+        nums = re.findall(r'\d+', answer)
+        for i in range(3):
+            choice = answer
+            for num in nums:
+                val = 10
+                new = num
+
+                # check if num's first digit is 0 then change to 1 (ex. 099 to 199)
+                if len(num) > len(str(int(num))) and len(str(int(num)))>=2:
+                    new = int(num) + pow(10, len(num)-1)
+
+                # adjust value range
+                if len(str(new)) == 2:
+                    val = 5
+                if len(str(new)) == 1:
+                    val = 2
+
+                rand = random.randint(abs(int(new)-val), int(new)+val)
+                choice = choice.replace(str(num), str(rand))
+
+            choices.append(choice)
+
+        return choices
+
+    else:
+        answer_tokenize = tokenize.word_tokenize(answer)
+        tokens = nltk.pos_tag(answer_tokenize)
+        word = random.choice(tokens)
+        r = RandomWord()
+
+        for i in range(3):
+            new = None
+            if word[1] == 'JJS':
+                new =  r.word(include_parts_of_speech=["adjectives"])
+            else:
+                new =  r.word(include_parts_of_speech=["noun"])
+
+            choices.append(answer.replace(word[0], new.capitalize()))
+
+        return choices
+
 def generate_QA(context):
     # check if all models are initialized
     validateInitialization()
@@ -62,6 +111,6 @@ def generate_QA(context):
         answer = getAnswer(question, context)
 
         if answer:
-            qa.append({'question': question, 'answer': answer})
+            qa.append({'question': question, 'answer': answer, 'choices': getChoices(answer)})
     
     return qa
