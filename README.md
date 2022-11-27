@@ -27,7 +27,7 @@ python -m venv venv
 You just need to install the packages listed on package.json, on the frontend folder.
 
 ```
-cd Connecting-React-Frontend-to-a-Flask-Backend/frontend
+cd frontend
 npm install
 ```
 
