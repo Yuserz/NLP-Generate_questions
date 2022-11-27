@@ -9,9 +9,6 @@ python -m venv venv
   
 ### 2 .Activate the environment
 
-```source venv/bin/activate```
-or
-
 ```venv/Scripts/activate ```
 
 
@@ -19,22 +16,9 @@ or
 
 ```pip install -r requirements.txt```
 
+### 4. Run the application 
 
-### 4 .Migrate/Create a database - Optional during initial set up
-
-```python manage.py```
-
-
-### 5. Run the application 
-
-`python routes.py`
-
-OR 
-
-```
-set FLASK_APP=routes
-flask run
-```
+```flask run```
 
 -------------------------------------------------------------------------------------------------------------------
 <h1>## Frontend - React</h1>
