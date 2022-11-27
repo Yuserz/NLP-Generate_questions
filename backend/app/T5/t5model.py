@@ -20,6 +20,7 @@ def initialize():
     AModel = AutoModelWithLMHead.from_pretrained(AModel_name)
     ATokenizer = AutoTokenizer.from_pretrained(AModel_name)
 
+    nltk.download('punkt')
     nltk.download('averaged_perceptron_tagger')
 
 def validateInitialization():
