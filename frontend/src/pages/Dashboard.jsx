@@ -1,14 +1,13 @@
-import { ContextArea, Header } from "components"
+import { ContextArea, Header, Footer } from "components"
 
 export default function Dashboard() {
     return (
-      <div className="container justify-between self-center flex w-screen ">
-        <Header />
-        <div className="h-screen w-screen bg-amber-200 rounded"><p></p></div>
-        <div className="h-screen w-screen bg-amber-200 rounded">
-            <ContextArea />
-        </div>
-      </div>   
+    <div className="grid-container w-screen h-screen">
+        <div className="item1"><Header /></div>
+        <div className="item2">Menu</div>
+        <div className="item3"><ContextArea /></div>  
+        <div className="item5"><Footer/></div>
+    </div> 
     )
   }
   

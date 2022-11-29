@@ -1,25 +1,25 @@
-import React, { useEffect, useState } from "react"
-import { axiosRequest } from "api"
+// import React, { useEffect, useState } from "react"
+// import { axiosRequest } from "api"
 
-const navItems = [
-    {
-        id: 1,
-        title: "Home",
-        path: "/",
-    },
-    {
-        id: 4,
-        title: "Logout",
-        path: "/logout",
-    },
-]
+// const navItems = [
+//     {
+//         id: 1,
+//         title: "Home",
+//         path: "/",
+//     },
+//     {
+//         id: 4,
+//         title: "Logout",
+//         path: "/logout",
+//     },
+// ]
 
 export default function Navbar({ refresh }) {
-    const [isOpen, setOpen] = useState(false)
-    const [length, setLength] = useState(0)
-    const openMenu = () => {
-        setOpen(prevState => !prevState)
-    }
+    // const [isOpen, setOpen] = useState(false)
+    // const [length, setLength] = useState(0)
+    // const openMenu = () => {
+    //     setOpen(prevState => !prevState)
+    // }
 
   
     return (

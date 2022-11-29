@@ -20,15 +20,15 @@ export default function Search({ className, hidden }) {
     },[searchParams])
 
     return (
-        <div className={className}>
+        <div className={`${className} flex float-right`}>
             <input
                 type="text"
-                className="mr-2 w-full md:w-40 lg:w-80 px-4 py-2 text-primary bg-white border rounded-md focus:border-primary focus:outline-none"
+                className="mr-2 w-full h-10 md:w-40 lg:w-80 px-4 py-2 text-sm bg-white border rounded-md focus:border-primary focus:outline-none"
                 placeholder="Search..."
                 value={value} onChange={(evt) => { setValue(evt.target.value) }}
                 onKeyDown={event => {if(event.key === 'Enter') {search()}}}
             />
-            <button onClick={search} className={`${hidden ? "hidden" : "visible"} px-4 py-2 text-white bg-primary border-l rounded`}>
+            <button onClick={search} className={`${hidden ? "hidden" : "visible"} m-0  h-10 px-4 py-2 text-sm text-white bg-primary border-l rounded`}>
                 Search
             </button>
         </div>

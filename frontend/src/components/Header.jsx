@@ -1,10 +1,12 @@
 import React from "react"
-import Navbar from "./Navbar"
+import Search from "./Search"
+import UserAvatar from "./UserAvatar"
 
 export default function Header() {
     return (
-        <header>   
-            <Navbar />            
+        <header className="justify-between">   
+            <Search />
+            <UserAvatar />           
         </header>
     )
 }
