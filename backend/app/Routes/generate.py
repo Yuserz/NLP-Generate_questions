@@ -7,16 +7,17 @@ from app.T5 import t5model
 @app.route('/generate', methods=['POST'])
 @login_required
 def generate():
-    req = request.get_json()
+    if request.method == 'POST':
+        req = request.get_json()
 
-    result = t5model.generate_QA(req['context'])
+        result = t5model.generate_QA(req['context'])
 
-    if not result:
+        if not result:
+            return Response(
+                status=200,
+            )
+
         return Response(
             status=200,
+            data=result
         )
-
-    return Response(
-        status=200,
-        data=result
-    )
