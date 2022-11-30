@@ -63,19 +63,24 @@ def history():
 def historyDetail(id):
     if request.method == 'GET':
         context = Context.query.get(id)
-        res = context.to_dict(exclude='user')
-        questions = Question.query.filter_by(context=context.id).all()
+        if context:
+            res = context.to_dict(exclude='user')
+            questions = Question.query.filter_by(context=context.id).all()
 
-        data = []
-        for question in questions:
-            quest = question.to_dict(exclude='context')
-            choices = Choice.query.filter_by(question=question.id).all()
-            quest['choices'] = [choice.choice for choice in choices]
-            data.append(quest)
-        
-        res['questions'] = data
+            data = []
+            for question in questions:
+                quest = question.to_dict(exclude='context')
+                choices = Choice.query.filter_by(question=question.id).all()
+                quest['choices'] = [choice.choice for choice in choices]
+                data.append(quest)
+            
+            res['questions'] = data
 
-        return Response(
-            data=res,
-            status=200
-        )
+            return Response(
+                data=res,
+                status=200
+            )
+        else:
+            return Response(
+                status=404
+            )
