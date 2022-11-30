@@ -1,8 +1,0 @@
-{
-  "devDependencies": {
-    "webpack-cli": "^5.0.0"
-  },
-  "dependencies": {
-    "react-icons": "^4.7.1"
-  }
-}

@@ -8,9 +8,8 @@ import {  Navbar } from "components"
 export default function Landing() {
 
   return (
-    <div className="container justify-between self-center flex w-screen ">
-      <div className="h-screen w-screen bg-amber-200 rounded"><p>hello</p></div>
-      <div className="h-screen w-screen bg-amber-200 rounded"><Navbar /></div>
+    <div className="flex items-center p-20">
+      <div className="h-screen w-screen bg-amber-200 rounded"><p>Welcome</p></div>
     </div>   
   )
 }
