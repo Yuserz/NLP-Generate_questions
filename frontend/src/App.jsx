@@ -10,7 +10,7 @@ function App() {
     <Router>
       <Routes>
         <Route exact path="/404" element={<NotFound />}/>
-        <Route exact path="/landing" element={<Landing />}/>
+        <Route exact path="/" element={<Landing />}/>
         <Route exact path="/dashboard" element={<Dashboard />}/>
       </Routes>
     </Router>
