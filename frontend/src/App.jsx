@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import {
-  Dashboard,
-  Landing,
+  Home,
+  Login,
+  SignUp,
   NotFound,
 } from "pages"
 
@@ -10,8 +11,9 @@ function App() {
     <Router>
       <Routes>
         <Route exact path="/404" element={<NotFound />}/>
-        <Route exact path="/" element={<Landing />}/>
-        <Route exact path="/dashboard" element={<Dashboard />}/>
+        <Route exact path="/" element={<Login />}/>
+        <Route exact path="/SignUp" element={<SignUp />}/>
+        <Route exact path="/Home" element={<Home />}/>
       </Routes>
     </Router>
   )

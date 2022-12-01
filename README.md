@@ -6,19 +6,26 @@
 cd backend
 python -m venv venv
 ```
+### Ff missing torch
+
+```pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu11 ```
+
   
 ### 2 .Activate the environment
 
-```venv/Scripts/activate ```
+```venv/Scripts/activate```
 
 
 ### 3 .Install the requirements
+
+```pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu11 ```
 
 ```pip install -r requirements.txt```
 
 ### 4. Run the application 
 
 ```flask run```
+
 
 -------------------------------------------------------------------------------------------------------------------
 <h1>## Frontend - React</h1>

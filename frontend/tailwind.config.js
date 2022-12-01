@@ -7,6 +7,9 @@ module.exports = {
         'primary': "#EB4800",
       },
     },
+    fontFamily: {
+      
+    }
   },
   plugins: [],
 }
