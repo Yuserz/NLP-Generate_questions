@@ -4,9 +4,9 @@ export default function Home() {
     return (
     <div className="grid-container w-screen h-screen bg-slate-50">
         <Header />
-        <div className="m-auto flex justify-between mt-5 max-w-[1240px] ">
+        <div className="m-auto flex justify-between mt-5 w-screen ">
             <Navbar />
-            <div className=" w-screen p-10 bg-amber-300 rounded-lg">
+            <div className=" w-screen p-10 bg-amber-200 rounded-lg">
                 <ContextForm />
             </div>
         </div>

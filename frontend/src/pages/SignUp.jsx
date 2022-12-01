@@ -15,7 +15,6 @@ export default function SignUp() {
           </div> */}
           <button className="bg-white max-w-[400px] w-full rounded-md p-4 shadow-md hover:shadow-xl font-bold text-xl" type="submit">SignUp</button>
           <div className="w-full flex justify-end p-1 opacity-70">
-
           </div>
         </div>
       </div>
