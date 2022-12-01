@@ -6,5 +6,6 @@ class Context(db.Model, model.Component):
 
     id = db.Column(db.Integer, primary_key=True)
     user = db.Column(db.Integer, db.ForeignKey('user.id'))
-    title = db.Column(db.String(100), nullable=False)
+    course = db.Column(db.String(64), nullable=False)
+    subject = db.Column(db.String(64), nullable=False)
     context = db.Column(db.Text, nullable=False)

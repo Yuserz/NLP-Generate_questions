@@ -10,13 +10,15 @@ def history():
     if request.method == 'POST':
         data = request.get_json()
 
-        title = data['title']
+        course = data['course']
+        subject = data['subject']
         context = data['context']
         datas = data['questions']
 
         context = Context(
             context=context,
-            title=title,
+            subject=subject,
+            course=course,
             user=current_user.id
         )
 
