@@ -9,7 +9,7 @@ def generate():
     if request.method == 'POST':
         req = request.get_json()
 
-        result = t5model.generate_QA(req['context'])
+        result = t5model.generate_QA_Thomas(req['context'])
 
         if not result:
             return Response(
