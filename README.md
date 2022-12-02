@@ -1,7 +1,8 @@
 # Requirements ,Usage and Installation
 <h1>## Backend - Flask</h1>
 ### Installation
-                              
+### Proceed to Number 2 when already done the setup previously     
+
 ```bash
 cd backend
 python -m venv venv

@@ -3,8 +3,6 @@ import { InputField } from "components"
 import { Link, useNavigate } from "react-router-dom"
 import { axiosRequest } from "api"
 import swal from "sweetalert2"
-import { Checkbox } from "@mui/material"
-
   
 export default function Login() {
 
@@ -28,7 +26,7 @@ const initialState = {
     event.preventDefault()
     try {
       const datas = { email, password, rememberMe }
-      const response = await axiosRequest.post("/login", datas)
+      await axiosRequest.post("/login", datas)
       
       navigate('/Home')
    
