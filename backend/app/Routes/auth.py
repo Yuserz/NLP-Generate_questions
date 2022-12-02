@@ -52,11 +52,11 @@ def login():
             status=403
         )
 
-    login_user(user, remember=remember)
+    # login_user(user, remember=remember)
 
-    return Response(
-        status=200
-    )
+    # return Response(
+    #     status=200
+    # )
 
 @app.route('/logout', methods=['POST'])
 @login_required

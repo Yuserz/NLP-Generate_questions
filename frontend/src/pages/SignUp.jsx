@@ -32,7 +32,7 @@ export default function SignUp() {
 
   //   if (error) {
   //     swal.fire({
-  //       title: error,
+  //       title: error,   
   //       icon: "error",
   //     }).then((result) => {
   //       if (result.isConfirmed) {
