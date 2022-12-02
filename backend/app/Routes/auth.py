@@ -37,7 +37,7 @@ def login():
     req = request.get_json()
     email = req['email']
     password = req['password']
-    remember = req['remember']
+    remember = ['remember']
 
     user = User.query.filter_by(email=email).first()
 
@@ -52,11 +52,11 @@ def login():
             status=403
         )
 
-    # login_user(user, remember=remember)
+    login_user(user, remember=remember)
 
-    # return Response(
-    #     status=200
-    # )
+    return Response(
+        status=200
+    )
 
 @app.route('/logout', methods=['POST'])
 @login_required
