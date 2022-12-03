@@ -6,7 +6,6 @@ import swal from "sweetalert2"
   
 export default function Login() {
 
-
 const initialState = {
   email: "",
   password: "",
@@ -92,16 +91,6 @@ const initialState = {
             required
           />
         </div>
-        {/* <div className="flex items-center mb-6 space-x-2 ">
-            <input 
-            type="checkbox" 
-            name="fname"
-            value={Boolean}
-            onChange={(event) => onChange(event)}
-            id="exampleFormControlInput2" />
-            <label for="fname" className="opacity-80">Remember me</label>
-          </div> */}
-
         <div class="text-center lg:text-left">
           <button
             type="submit"

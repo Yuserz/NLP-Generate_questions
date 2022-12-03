@@ -50,7 +50,7 @@ export default function ContextForm() {
                 <textarea name="context" onChange={(event) => onChange(event)} value={context} rows="18" className="outline-none rounded-lg block resize-none p-2.5 w-full  text-sm " placeholder="Input your context here..."></textarea>
                 <button onClick={generate} className="p-4 bg-white w-fit rounded-lg">Generate Question</button>
             </div>
-            <div className="flex flex-col gap-y-3">
+            <div className="flex flex-col gap-y-3 w-fit h-fit">
                 {questions ? questions.map((question, index) => {
                     return (
                         <div key={index} className="flex flex-col gap-y-1">

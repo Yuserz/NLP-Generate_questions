@@ -1,17 +1,22 @@
 import { useState } from "react"
+import { axiosRequest } from "api"
+import swal from "sweetalert2"
 import { useNavigate } from "react-router-dom"
-import swal from 'sweetalert';
+
+// components
+import { InputField, Back } from "components"
 
 const initialState = {
   firstName: "",
   lastName: "",
   email: "",
-  password: ""
+  password: "",
+  confirm_password: ""
 }
 
-export default function SignUp() {
+export default function Register() {
   const [
-    { firstName, lastName, email, password },
+    { firstName, lastName, email, password, confirm_password },
     setState,
   ] = useState(initialState)
 
@@ -23,99 +28,162 @@ export default function SignUp() {
     setState((prevState) => ({ ...prevState, [name]: value }))
   }
 
-  // const onSubmit = async (event) => {
-  //   event.preventDefault()
+  const onSubmit = async (event) => {
+    event.preventDefault()
 
-  //   if (password !== confirm_password) {
-  //     setError('Password does not match!')
-  //   }
+    console.log(initialState)
 
-  //   if (error) {
-  //     swal.fire({
-  //       title: error,   
-  //       icon: "error",
-  //     }).then((result) => {
-  //       if (result.isConfirmed) {
-  //         return
-  //       }
-  //     })
-  //   }
-  //   else {
-  //     try {
-  //       const datas = {
-  //         firstName,
-  //         lastName,
-  //         email,
-  //         userType,
-  //         password,
-  //       }
+    if (password !== confirm_password) {
+      setError('Password does not match!')
+    }
 
-  //       const response = await axiosRequest.post("/api/v1/signup", datas)
+    if (error) {
+      swal.fire({
+        title: error,
+        icon: "error",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          return
+        }
+      })
+    }
+    else {
+      try {
+        const datas = {
+          firstName,
+          lastName,
+          email,
+          password,
+        }
 
-  //       const { status } = response
+        const response = await axiosRequest.post("/signup", datas)
 
-  //       if (status === 201) {
-  //         swal.fire({
-  //           title: "Successfully Signup",
-  //           text: "click ok to continue",
-  //           icon: "success",
-  //         }).then((result) => {
-  //           if (result.isConfirmed) {
-  //             navigate('/')
-  //           }
-  //         })
-  //       }
-  //     } catch (error) {
-  //       const { status } = error.response
+        const { status } = response
 
-  //       if (status === 500) {
-  //         swal.fire({
-  //           title: "Oops!! Error 500",
-  //           text: "server not found",
-  //           icon: "warning",
-  //         })
-  //       }
+        if (status === 201) {
+          swal.fire({
+            title: "Successfully Signup",
+            text: "click ok to continue",
+            icon: "success",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              navigate('/Home')
+            }
+          })
+        }
+      } catch (error) {
+        const { status } = error.response
 
-  //       if (status === 404) {
-  //         swal.fire({
-  //           title: "Oops!!",
-  //           text: "something went wrong, please try again :(",
-  //           icon: "warning",
-  //         })
-  //       }
+        if (status === 500) {
+          swal.fire({
+            title: "Oops!! Error 500",
+            text: "server not found",
+            icon: "warning",
+          })
+        }
 
-  //       if (status === 409) {
-  //         swal.fire({
-  //           title: "Error",
-  //           text: "Email already taken!",
-  //           icon: "warning",
-  //         })
-  //       }
-  //     }
-  //   }
-  // }
+        if (status === 404) {
+          swal.fire({
+            title: "Oops!!",
+            text: "something went wrong, please try again :(",
+            icon: "warning",
+          })
+        }
+
+        if (status === 409) {
+          swal.fire({
+            title: "Error",
+            text: "Email already taken!",
+            icon: "warning",
+          })
+        }
+      }
+    }
+  }
+
 
   return (
     <div className="flex items-center justify-evenly m-auto pl-5 pr-5 max-w-[1240px] h-screen">
-      <div className="w-[50%]"><img src="./images/logo.png" alt="logo" /></div>
-      <div className="flex items-center justify-center w-[50%] h-[80%] p-10 bg-amber-200 rounded-xl">
-        <div className="flex flex-col max-w-[400px] w-full space-y-5 ml-10 mr-10 items-center ">
-          <p className="text-4xl font-medium mb-10">Study Budy</p>
-          <div className='flex gap-5'>
-            <input className="rounded-md p-2 w-full shadow-inner bg-white outline-gray-300 max-w-[400px]" placeholder="First Name" type="Email" />
-            <input className="rounded-md p-2 w-full shadow-inner bg-white outline-gray-300  max-w-[400px]" placeholder="Last Name" type="password" />
-          </div>
-          <input className="rounded-md p-2 w-full shadow-inner bg-white outline-gray-300 max-w-[400px]" placeholder="Email" type="Email" />
-          <input className="rounded-md p-2 w-full shadow-inner bg-white outline-gray-300  max-w-[400px]" placeholder="Password" type="password" />
-          <button className="bg-white max-w-[400px] w-full rounded-md p-4 shadow-md hover:shadow-xl font-bold text-l" type="submit">Sign Up</button>
-          <div className="w-full flex justify-end p-1 opacity-70">
-            <p>Already have an account?</p>
-          </div>
-          <div>
-            <button type="submit"></button>
-          </div>
-        </div>
+      
+      <div className="w-[50%]">
+        <img src="./images/logo.png" alt="logo" />
       </div>
-    </div>   
+
+      <div className="flex items-center justify-center w-[50%] h-[80%] p-10 bg-amber-200 rounded-xl">
+      <form className="m-w-[50%] w-[400px] h-fit" onSubmit={(event) => onSubmit(event)}>
+        <div className="py-8">
+          <h1 className="text-4xl font-bold my-2">
+            Register Account
+          </h1>
+          <p className="text-gray-400 w-80">
+          </p>
+        </div>
+
+        <div class="mb-6 grid grid-cols-2 gap-2">
+          <InputField
+            type="text"
+            name="firstName"
+            value={firstName}
+            onChange={(event) => onChange(event)}
+            placeholder="Firstname"
+            required
+          />
+          <InputField
+            type="text"
+            name="lastName"
+            value={lastName}
+            onChange={(event) => onChange(event)}
+            placeholder="Lastname"
+            required
+          />
+        </div>
+
+        <div className="mb-6">
+          <InputField
+            type="email"
+            name="email"
+            value={email}
+            onChange={(event) => onChange(event)}
+            placeholder="Email Address"
+            required
+          />
+        </div>
+
+        <div className="mb-6">
+          <InputField
+            type="password"
+            name="password"
+            value={password}
+            onChange={(event) => onChange(event)}
+            class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-primary-600 focus:outline-none"
+            placeholder="Password"
+            required
+          />
+        </div>
+
+        <div className="mb-6">
+          <InputField
+            type="password"
+            name="confirm_password"
+            value={confirm_password}
+            onChange={(event) => onChange(event)}
+            class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-primary-600 focus:outline-none"
+            placeholder="Confirm Password"
+            required
+          />
+        </div>
+
+        <div class="text-center lg:text-left">
+          <button
+            type="submit"
+            class="bg-white  hover:bg-amber-400 max-w-[400px] w-full rounded-md p-4 shadow-md hover:shadow-xl font-bold text-xl"
+          >
+            Sign Up
+          </button>
+          <Back to="/" />
+        </div>
+      </form>
+    </div>  
+    </div> 
   )
 }

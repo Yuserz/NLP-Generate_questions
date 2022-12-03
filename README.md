@@ -7,7 +7,7 @@
 cd backend
 python -m venv venv
 ```
-### Ff missing torch
+### if missing torch
 
 ```pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu11 ```
 
