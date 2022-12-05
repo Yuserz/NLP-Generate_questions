@@ -3,13 +3,13 @@ import { axiosRequest } from "api"
 
 const initialState = {
     context: "",
-    course: "",
+    topic: "",
     subject: ""
 }
 
 export default function ContextForm() {
     const [questions, setQuestions] = useState([])
-    const [{ context, course, subject }, setState] = useState(initialState)
+    const [{ context, topic, subject }, setState] = useState(initialState)
 
     const url = "/generate"
 
@@ -44,8 +44,8 @@ export default function ContextForm() {
         <div className="flex flex-col gap-y-10">
             <div className=" flex flex-col space-y-5 items-center">
                 <div className="flex space-x-4 w-[100%]">
-                    <textarea name="course" value={course} onChange={(event) => onChange(event)} cols="20" rows="1" placeholder="Course" className="outline-none  resize-none p-2 rounded-lg"></textarea>
-                    <textarea name="subject" value={subject} onChange={(event) => onChange(event)} cols="20" rows="1" placeholder="Subject" className="outline-none resize-none p-2 rounded-lg"></textarea>
+                    <textarea name="course" value={subject} onChange={(event) => onChange(event)} cols="20" rows="1" placeholder="Subject" className="outline-none  resize-none p-2 rounded-lg"></textarea>
+                    <textarea name="subject" value={topic} onChange={(event) => onChange(event)} cols="20" rows="1" placeholder="Topic" className="outline-none resize-none p-2 rounded-lg"></textarea>
                 </div>
                 <textarea name="context" onChange={(event) => onChange(event)} value={context} rows="18" className="outline-none rounded-lg block resize-none p-2.5 w-full  text-sm " placeholder="Input your context here..."></textarea>
                 <button onClick={generate} className="p-4 bg-white w-fit rounded-lg">Generate Question</button>
