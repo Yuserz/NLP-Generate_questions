@@ -5,6 +5,8 @@ import random
 from wonderwords import RandomWord
 import re
 
+MAX_QUESTIONS = 5
+
 QModel_Allenai = "allenai/t5-small-squad2-question-generation"
 QModel_Thomas = "ThomasSimonini/t5-end2end-question-generation"
 AModel_name = "MaRiOrOsSi/t5-base-finetuned-question-answering"
@@ -67,6 +69,14 @@ def getAnswer(question, context):
 def getChoices(answer):
     choices = []
     choices.append(answer)
+
+    def getRandom(num, value):
+        rand = random.randint(abs(int(num)-value), int(num)+value)
+
+        if rand in choices:
+            getRandom(answer, num, value)
+
+        return rand
     
     # check if answer contains numbers
     if any(i.isdigit() for i in answer):
@@ -85,9 +95,9 @@ def getChoices(answer):
                 if len(str(new)) == 2:
                     val = 5
                 if len(str(new)) == 1:
-                    val = 2
+                    val = 3
 
-                rand = random.randint(abs(int(new)-val), int(new)+val)
+                rand = getRandom(new, val)
                 choice = choice.replace(str(num), str(rand))
 
             choices.append(choice)
@@ -111,10 +121,7 @@ def getChoices(answer):
 
         return choices
 
-def generate_QA_Allenai(context):
-    # check if all models are initialized
-    validateInitialization()
-
+def generate_Question_Allenai(context):
     sentences = tokenize.sent_tokenize(context)
 
     questions = []
@@ -123,27 +130,38 @@ def generate_QA_Allenai(context):
 
         if question:
             questions.append(question)
-
-    qa = []
-    for question in questions:
-        answer = getAnswer(question, context)
-
-        if answer:
-            qa.append({'question': question, 'answer': answer, 'choices': getChoices(answer)})
     
-    return qa
+    return questions
 
-def generate_QA_Thomas(context):
+def generate_Question_Thomas(context):
+    questions = [question for question in getQuestionThomas(context) if question]
+    
+    return questions
+    
+
+def generate_QA(context):
     # check if all models are initialized
     validateInitialization()
 
-    questions = [question for question in getQuestionThomas(context) if question]
-    
     qa = []
-    for question in questions:
+
+    qThomas = generate_Question_Thomas(context)
+    
+    for question in qThomas:
         answer = getAnswer(question, context)
 
         if answer:
             qa.append({'question': question, 'answer': answer, 'choices': getChoices(answer)})
     
+    qAllenai = generate_Question_Allenai(context)
+
+    # shuffle questions from Allenai
+    random.shuffle(qAllenai)
+
+    for question in qAllenai:
+        answer = getAnswer(question, context)
+
+        if answer and len(qa) < MAX_QUESTIONS:
+            qa.append({'question': question, 'answer': answer, 'choices': getChoices(answer)})
+
     return qa
