@@ -70,13 +70,14 @@ def getChoices(answer):
     choices = []
     choices.append(answer)
 
-    def getRandom(num, value):
+    def getRandom(choice, num, value):
         rand = random.randint(abs(int(num)-value), int(num)+value)
 
-        if rand in choices:
-            getRandom(answer, num, value)
+        ch = choice.replace(str(num), str(rand))
+        if ch in choices:
+            ch = getRandom(choice, num, value)
 
-        return rand
+        return ch
     
     # check if answer contains numbers
     if any(i.isdigit() for i in answer):
@@ -97,8 +98,7 @@ def getChoices(answer):
                 if len(str(new)) == 1:
                     val = 3
 
-                rand = getRandom(new, val)
-                choice = choice.replace(str(num), str(rand))
+                choice = getRandom(choice, new, val)
 
             choices.append(choice)
 
