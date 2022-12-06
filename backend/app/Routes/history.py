@@ -2,7 +2,10 @@ from flask import request
 from flask_login import login_required, current_user
 from app import app
 from app.Components.response import Response
-from app.models import Context, Question, Choice
+
+from app.Models.context import Context
+from app.Models.choices import Choice
+from app.Models.questions import Question
 
 @app.route('/history', methods=['POST', 'GET'])
 @login_required
@@ -10,7 +13,7 @@ def history():
     if request.method == 'POST':
         data = request.get_json()
 
-        course = data['course']
+        topic = data['topic']
         subject = data['subject']
         context = data['context']
         datas = data['questions']
@@ -18,7 +21,7 @@ def history():
         context = Context(
             context=context,
             subject=subject,
-            course=course,
+            topic=topic,
             user=current_user.id
         )
 

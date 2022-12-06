@@ -2,8 +2,6 @@ from app import db
 from app.Components import model
 
 class Question(db.Model, model.Component):
-    __tablename__ = 'question'
-
     id = db.Column(db.Integer, primary_key=True)
     context = db.Column(db.Integer, db.ForeignKey('context.id'))
     question = db.Column(db.Text, nullable=False)
