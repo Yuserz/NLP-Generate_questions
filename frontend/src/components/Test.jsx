@@ -13,7 +13,8 @@ export default function Test({ context, questions }) {
     }
 
     const submit = () => {
-        setSubmit(prevState => !prevState)
+        if (Object.keys(selected).length === questions.length)
+            setSubmit(prevState => !prevState)
     }
 
     const handleChange = (event) => {
@@ -43,7 +44,7 @@ export default function Test({ context, questions }) {
                 {questions.map((question, index) => {
                     return (
                         <div key={index} className="flex flex-col gap-y-5">
-                            <p className="font-medium">{index + 1}. Question: {question.question}</p>
+                            <p className="font-medium">{index + 1}. {question.question}</p>
                             <div className="flex flex-col ml-2 items-start gap-y-2">
                                 {question.choices.map((choice, i) => {
                                     return (
