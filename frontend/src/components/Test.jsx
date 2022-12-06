@@ -33,13 +33,13 @@ export default function Test({ context, questions }) {
 
     return (
         <div className="flex flex-col gap-y-5 items-center">
-            {showContext ?
+            {/* {showContext ?
                 <div className="bg-white p-5 rounded-lg">
                     {context}
                 </div>
                 : null
             }
-            <button className="rounded border border-black w-40 p-3" onClick={show}>{showContext ? 'Hide' : 'Show'} Context</button>
+            <button className="rounded border border-black w-40 p-3" onClick={show}>{showContext ? 'Hide' : 'Show'} Context</button> */}
             <div className="flex flex-col gap-y-3 w-fit h-fit bg-white rounded-lg p-10">
                 {questions.map((question, index) => {
                     return (
