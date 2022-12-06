@@ -21,7 +21,7 @@ if __name__ == '__main__':
 from app import Routes
 from app import Models
 from app.T5 import t5model
-#t5model.initialize()
+t5model.initialize()
 
 # @app.before_first_request
 # def create_tables():

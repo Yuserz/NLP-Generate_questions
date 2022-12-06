@@ -102,6 +102,7 @@ def getChoices(answer):
 
             choices.append(choice)
 
+        random.shuffle(choices)
         return choices
 
     else:
@@ -119,6 +120,7 @@ def getChoices(answer):
 
             choices.append(answer.replace(word[0], new.capitalize()))
 
+        random.shuffle(choices)
         return choices
 
 def generate_Question_Allenai(context):
@@ -151,7 +153,8 @@ def generate_QA(context):
         answer = getAnswer(question, context)
 
         if answer:
-            qa.append({'question': question, 'answer': answer, 'choices': getChoices(answer)})
+            choices = getChoices(answer)
+            qa.append({'question': question, 'answer': answer, 'choices': choices })
     
     qAllenai = generate_Question_Allenai(context)
 
@@ -162,6 +165,7 @@ def generate_QA(context):
         answer = getAnswer(question, context)
 
         if answer and len(qa) < MAX_QUESTIONS:
-            qa.append({'question': question, 'answer': answer, 'choices': getChoices(answer)})
+            choices = getChoices(answer)
+            qa.append({'question': question, 'answer': answer, 'choices': choices})
 
     return qa
