@@ -4,6 +4,7 @@ from nltk import tokenize
 import random
 from wonderwords import RandomWord
 import re
+import string
 
 MAX_QUESTIONS = 5
 
@@ -108,17 +109,32 @@ def getChoices(answer):
     else:
         answer_tokenize = tokenize.word_tokenize(answer)
         tokens = nltk.pos_tag(answer_tokenize)
-        word = random.choice(tokens)
+        
         r = RandomWord()
 
-        for i in range(3):
-            new = None
+        def getRandomWord():
+            word = random.choice(tokens)
+            
+            if word[0] == '``' or word[0] == "''":
+                choice = getRandomWord()
+
             if word[1] == 'JJS':
                 new =  r.word(include_parts_of_speech=["adjectives"])
             else:
-                new =  r.word(include_parts_of_speech=["noun"])
+                if word[0].endswith("."):
+                    new = random.choice(string.ascii_uppercase) + "."
+                else:
+                    new =  r.word(include_parts_of_speech=["noun"])
 
-            choices.append(answer.replace(word[0], new.capitalize()))
+            choice = answer.replace(word[0], new.capitalize())
+
+            if choice in choices:
+                choice = getRandomWord()
+
+            return choice
+
+        for i in range(3):
+            choices.append(getRandomWord())
 
         random.shuffle(choices)
         return choices
@@ -146,7 +162,7 @@ def generate_QA(context):
     validateInitialization()
 
     qa = []
-
+    
     qThomas = generate_Question_Thomas(context)
     
     for question in qThomas:
