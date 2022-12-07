@@ -63,7 +63,7 @@ export default function Test({subject, topic, context, questions }) {
                                                 ${selected[index] === choice && !isSubmit ? 'bg-blue-100' : ""}
                                                 ${correct[index] && selected[index] === choice && isSubmit ? 'bg-green-100' : ''}
                                                 ${!correct[index] && selected[index] === choice && isSubmit ? 'bg-red-100' : ''}
-                                                ${!correct[index] && question.answer === choice && isSubmit ? 'bg-green-100' : ''}
+                                                ${!correct[index] && question.answer === choice && isSubmit ? 'border-green-300' : ''}
                                                 `}
                                             >
                                                 <div className="flex flex-row gap-x-3">
