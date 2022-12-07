@@ -4,6 +4,7 @@ import {
   Login,
   SignUp,
   NotFound,
+  TestPage
 } from "pages"
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route exact path="/" element={<Login />}/>
         <Route exact path="/SignUp" element={<SignUp />}/>
         <Route exact path="/Home" element={<Home />}/>
+        <Route exact path="/Test" element={<TestPage />}/>
       </Routes>
     </Router>
   )

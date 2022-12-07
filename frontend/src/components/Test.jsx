@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Check, X } from 'react-feather'
 
-export default function Test({ context, questions }) {
+export default function Test({subject, topic, context, questions }) {
     const [selected, setSelected] = useState([])
     const [correct, setCorrect] = useState([])
     const [isSubmit, setSubmit] = useState(false)
