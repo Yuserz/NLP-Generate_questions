@@ -16,6 +16,7 @@ function App() {
         <Route exact path="/SignUp" element={<SignUp />}/>
         <Route exact path="/Home" element={<Home />}/>
         <Route exact path="/Test" element={<TestPage />}/>
+        <Route exact path="/404" element={<NotFound />}/>
       </Routes>
     </Router>
   )
