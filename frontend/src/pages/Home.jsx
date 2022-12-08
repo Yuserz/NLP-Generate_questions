@@ -1,16 +1,15 @@
-import { ContextForm, Header, Footer, Navbar } from "components"
+import { ContextForm, Header, PublicBody, Navbar } from "components"
 
 export default function Home() {
     return (
-    <div className="grid-container w-screen h-screen bg-slate-50">
+    <div className="grid-container w-screen h-screen overflow-hidden bg-slate-50">
         <Header />
-        <div className="m-auto flex justify-between">
+        <div className="m-auto h-screen flex justify-between">
             <Navbar />
             <div className=" w-screen p-10 bg-amber-200 ">
                 <ContextForm />
             </div>
-        </div>
+       </div>
     </div> 
     )
   }
-  

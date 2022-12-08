@@ -38,7 +38,7 @@ export default function ContextForm() {
 
     return (
         <div className="flex flex-col gap-y-10 items-center">
-            <div className=" flex flex-col space-y-5 items-center">
+            <div className=" flex flex-col w-full max-w-[1200px] space-y-5 items-center">
                 <div className="flex space-x-4 w-[100%]">
                     <textarea name="subject" value={subject} onChange={(event) => onChange(event)} cols="20" rows="1" placeholder="Subject" className="outline-none  resize-none p-2 rounded-lg"></textarea>
                     <textarea name="topic" value={topic} onChange={(event) => onChange(event)} cols="20" rows="1" placeholder="Topic" className="outline-none resize-none p-2 rounded-lg"></textarea>

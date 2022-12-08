@@ -96,7 +96,7 @@ export default function Test({ subject, topic, context, questions }) {
                 : null
             }
 
-            <div className="flex flex-col gap-y-3 w-fit h-fit bg-white rounded-lg p-10">
+            <div className=" w-full max-w-[900px] flex flex-col gap-y-3 h-fit bg-white rounded-lg p-10">
                 {questions.map((question, index) => {
                     return (
                         <div key={index} className="flex flex-col gap-y-5">
