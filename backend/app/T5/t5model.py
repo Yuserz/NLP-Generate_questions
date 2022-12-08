@@ -103,9 +103,6 @@ def getChoices(answer):
 
             choices.append(choice)
 
-        random.shuffle(choices)
-        return choices
-
     else:
         answer_tokenize = tokenize.word_tokenize(answer)
         tokens = nltk.pos_tag(answer_tokenize)
@@ -126,7 +123,7 @@ def getChoices(answer):
                 else:
                     new =  r.word(include_parts_of_speech=["noun"])
 
-            choice = answer.replace(word[0], new.capitalize())
+            choice = answer.replace(word[0], new.capitalize() if word[0][0].isupper() else new)
 
             if choice in choices:
                 choice = getRandomWord()
@@ -136,8 +133,8 @@ def getChoices(answer):
         for i in range(3):
             choices.append(getRandomWord())
 
-        random.shuffle(choices)
-        return choices
+    random.shuffle(choices)
+    return choices
 
 def generate_Question_Allenai(context):
     sentences = tokenize.sent_tokenize(context)
