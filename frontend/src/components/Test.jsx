@@ -1,11 +1,14 @@
 import { useState } from 'react'
-import { Check, X } from 'react-feather'
+import { Check, X, Star } from 'react-feather'
 
-export default function Test({subject, topic, context, questions }) {
+export default function Test({ subject, topic, context, questions }) {
     const [selected, setSelected] = useState([])
     const [correct, setCorrect] = useState([])
+    const [score, setScore] = useState(0)
     const [isSubmit, setSubmit] = useState(false)
     const [showContext, setShowContext] = useState(false)
+
+    const [showModal, setModal] = useState(false)
 
     const getLetter = (index) => {
         const letters = ['A', 'B', 'C', 'D']
@@ -13,8 +16,18 @@ export default function Test({subject, topic, context, questions }) {
     }
 
     const submit = () => {
-        if (Object.keys(selected).length === questions.length)
+        if (Object.keys(selected).length === questions.length) {
             setSubmit(prevState => !prevState)
+
+            let totalScore = 0
+            Object.keys(correct).forEach((key) => {
+                if (correct[key]) totalScore += 1
+            })
+
+            setScore(totalScore)
+            setModal(true)
+            console.log()
+        }
     }
 
     const handleChange = (event) => {
@@ -31,6 +44,10 @@ export default function Test({subject, topic, context, questions }) {
         setShowContext(prevState => !prevState)
     }
 
+    const confirm = () => {
+        setModal(false)
+    }
+
     return (
         <div className="flex flex-col gap-y-5 items-center">
             {/* {showContext ?
@@ -40,6 +57,30 @@ export default function Test({subject, topic, context, questions }) {
                 : null
             }
             <button className="rounded border border-black w-40 p-3" onClick={show}>{showContext ? 'Hide' : 'Show'} Context</button> */}
+
+            {showModal ?
+                <div className="w-full h-full bg-black/25 fixed top-0 left-0 right-0 z-50 flex flex-col justify-center items-center">
+                    <div className="flex flex-col bg-white rounded text-center">
+                        <div className="flex justify-end px-2 pt-2">
+                            <button onClick={confirm}>
+                                <X className="text-gray-400 w-5" />
+                            </button>
+                        </div>
+                        <div className="p-10">
+                            <div className="flex flex-row gap-x-2 text-amber-300">
+                                {Object.keys(correct).map((key, index) => {
+                                    if (index < score) { return <Star size={40} fill="#FCD34D" /> }
+                                    else { return <Star size={40} /> }
+                                })}
+                            </div>
+                            <p className="text-base mt-3">You've got a</p>
+                            <p className="text-lg font-bold">{score} out of {Object.keys(questions).length}</p>
+                        </div>
+                    </div>
+                </div>
+                : null
+            }
+
             <div className="flex flex-col gap-y-3 w-fit h-fit bg-white rounded-lg p-10">
                 {questions.map((question, index) => {
                     return (
