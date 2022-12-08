@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Check, X, Star } from 'react-feather'
+import { useNavigate } from 'react-router-dom'
 
 export default function Test({ subject, topic, context, questions }) {
     const [selected, setSelected] = useState([])
@@ -9,6 +10,8 @@ export default function Test({ subject, topic, context, questions }) {
     const [showContext, setShowContext] = useState(false)
 
     const [showModal, setModal] = useState(false)
+
+    const navigate = useNavigate()
 
     const getLetter = (index) => {
         const letters = ['A', 'B', 'C', 'D']
@@ -48,6 +51,14 @@ export default function Test({ subject, topic, context, questions }) {
         setModal(false)
     }
 
+    const retake = () => {
+        window.location.reload(true);
+    }
+
+    const generate = () => {
+        navigate('/Home', {replace: true})
+    }
+
     return (
         <div className="flex flex-col gap-y-5 items-center">
             {/* {showContext ?
@@ -66,7 +77,7 @@ export default function Test({ subject, topic, context, questions }) {
                                 <X className="text-gray-400 w-5" />
                             </button>
                         </div>
-                        <div className="p-10">
+                        <div className="px-10 py-4">
                             <div className="flex flex-row gap-x-2 text-amber-300">
                                 {Object.keys(correct).map((key, index) => {
                                     if (index < score) { return <Star size={40} fill="#FCD34D" /> }
@@ -74,7 +85,11 @@ export default function Test({ subject, topic, context, questions }) {
                                 })}
                             </div>
                             <p className="text-base mt-3">You've got a</p>
-                            <p className="text-lg font-bold">{score} out of {Object.keys(questions).length}</p>
+                            <p className="text-3xl font-bold">{score} out of {Object.keys(questions).length}</p>
+                        </div>
+                        <div className="flex flex-col gap-y-2 justify-center p-3">
+                            <button onClick={retake} className="bg-blue-500 rounded px-4 py-2 text-white">RETAKE</button>
+                            <button onClick={confirm} className="bg-green-500 rounded px-4 py-2 text-white">CONTINUE</button>
                         </div>
                     </div>
                 </div>
@@ -134,7 +149,11 @@ export default function Test({ subject, topic, context, questions }) {
                     )
                 })}
             </div>
-            <button className="rounded border border-black w-40 p-3" onClick={submit}>SUBMIT ANSWER</button>
+            {
+                !isSubmit ? <button className="rounded border border-black w-40 p-3" onClick={submit}>SUBMIT ANSWER</button> 
+                : <button className="rounded border border-black p-3" onClick={generate}>GENERATE NEW QUESTIONS</button> 
+            }
+            
         </div>
     )
 }
