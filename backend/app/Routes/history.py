@@ -17,12 +17,14 @@ def history():
         subject = data['subject']
         context = data['context']
         datas = data['questions']
+        score = data['score']
 
         context = Context(
             context=context,
             subject=subject,
             topic=topic,
-            user=current_user.id
+            user=current_user.id,
+            score=score
         )
 
         context.create()

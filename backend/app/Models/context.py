@@ -9,6 +9,7 @@ class Context(db.Model, model.Component):
     subject = db.Column(db.String(64), nullable=False)
     topic = db.Column(db.String(64), nullable=False)
     context = db.Column(db.Text, nullable=False)
+    score = db.Column(db.Integer)
 
     dateCreated = db.Column(db.TIMESTAMP, server_default=func.now())
 

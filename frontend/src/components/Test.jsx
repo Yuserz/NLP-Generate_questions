@@ -67,6 +67,7 @@ export default function Test({ subject, topic, context, questions }) {
                 topic: topic,
                 subject: subject,
                 context: context,
+                score: score,
                 questions: qa
             }
  
