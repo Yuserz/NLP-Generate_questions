@@ -9,7 +9,7 @@ export default function Navbar() {
         <div className="flex justify-start h-fit min-w-fit w-fit top-0 mt-0 ml-2">
             <ul>
                 <li className="p-4">Home</li>
-                <li Name="History" id="History" className="p-4">History</li>
+                <li className="p-4">History</li>
                 <li className="p-4">About Us</li>
             </ul>
         </div>

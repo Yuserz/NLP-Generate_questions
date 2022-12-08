@@ -39,3 +39,10 @@ npm install
 
 `npm start`
 
+
+
+
+------
+flask db init
+flask db migrate
+flask db upgrade
