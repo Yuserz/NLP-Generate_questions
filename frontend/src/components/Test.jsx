@@ -1,8 +1,12 @@
 import { useState } from 'react'
 import { Check, X, Star } from 'react-feather'
 import { useNavigate } from 'react-router-dom'
+import { axiosRequest } from "api"
 
 export default function Test({ subject, topic, context, questions }) {
+
+    const history_url = "/history"
+
     const [selected, setSelected] = useState([])
     const [correct, setCorrect] = useState([])
     const [score, setScore] = useState(0)
@@ -29,7 +33,6 @@ export default function Test({ subject, topic, context, questions }) {
 
             setScore(totalScore)
             setModal(true)
-            console.log()
         }
     }
 
@@ -47,8 +50,36 @@ export default function Test({ subject, topic, context, questions }) {
         setShowContext(prevState => !prevState)
     }
 
-    const confirm = () => {
+    const confirm = async () => {
         setModal(false)
+        
+        try {
+            const qa = questions.map((question, index) => {
+                return {
+                    question: question.question,
+                    answer: question.answer,
+                    choices: question.choices,
+                    userAnswer: selected[index]
+                }
+            })
+
+            const data = {
+                topic: topic,
+                subject: subject,
+                context: context,
+                questions: qa
+            }
+ 
+            const response = await axiosRequest.post(history_url, data)
+            const { status } = response
+            
+            if (status === 201) {
+                
+            }
+        }
+        catch (e) {
+
+        }
     }
 
     const retake = () => {
@@ -56,7 +87,7 @@ export default function Test({ subject, topic, context, questions }) {
     }
 
     const generate = () => {
-        navigate('/Home', {replace: true})
+        navigate('/Home', { replace: true })
     }
 
     return (
@@ -80,8 +111,8 @@ export default function Test({ subject, topic, context, questions }) {
                         <div className="px-10 py-4">
                             <div className="flex flex-row gap-x-2 text-amber-300">
                                 {Object.keys(correct).map((key, index) => {
-                                    if (index < score) { return <Star size={40} fill="#FCD34D" /> }
-                                    else { return <Star size={40} /> }
+                                    if (index < score) { return <Star size={40} fill="#FCD34D" key={index}/> }
+                                    else { return <Star size={40} key={index}/> }
                                 })}
                             </div>
                             <p className="text-base mt-3">You've got a</p>
@@ -114,7 +145,7 @@ export default function Test({ subject, topic, context, questions }) {
                                                 disabled={isSubmit}
                                             />
 
-                                            <label for={`c-${index}-${i}`}
+                                            <label htmlFor={`c-${index}-${i}`}
                                                 className={`rounded border flex flex-row justify-between  items-center w-full
                                                 ${selected[index] === choice && !isSubmit ? 'bg-blue-100' : ""}
                                                 ${correct[index] && selected[index] === choice && isSubmit ? 'bg-green-100' : ''}
@@ -150,10 +181,10 @@ export default function Test({ subject, topic, context, questions }) {
                 })}
             </div>
             {
-                !isSubmit ? <button className="rounded border border-black w-40 p-3" onClick={submit}>SUBMIT ANSWER</button> 
-                : <button className="rounded border border-black p-3" onClick={generate}>GENERATE NEW QUESTIONS</button> 
+                !isSubmit ? <button className="rounded border border-black w-40 p-3" onClick={submit}>SUBMIT ANSWER</button>
+                    : <button className="rounded border border-black p-3" onClick={generate}>GENERATE NEW QUESTIONS</button>
             }
-            
+
         </div>
     )
 }
