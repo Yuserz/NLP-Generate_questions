@@ -37,13 +37,13 @@ export default function ContextForm() {
     }
 
     return (
-        <div className="flex flex-col gap-y-10 items-center">
+        <div className="flex flex-col m-8 gap-y-10 items-center ">
             <div className=" flex flex-col w-full max-w-[1200px] space-y-5 items-center">
                 <div className="flex space-x-4 w-[100%]">
                     <textarea name="subject" value={subject} onChange={(event) => onChange(event)} cols="20" rows="1" placeholder="Subject" className="outline-none  resize-none p-2 rounded-lg"></textarea>
                     <textarea name="topic" value={topic} onChange={(event) => onChange(event)} cols="20" rows="1" placeholder="Topic" className="outline-none resize-none p-2 rounded-lg"></textarea>
                 </div>
-                <textarea name="context" onChange={(event) => onChange(event)} value={context} rows="18" className="outline-none rounded-lg block resize-none p-2.5 w-full  text-sm " placeholder="Input your context here..."></textarea>
+                <textarea name="context" onChange={(event) => onChange(event)} value={context} rows="18" className="outline-none rounded-lg block resize-none p-2.5 w-full h-full text-sm " placeholder="Input your context here..."></textarea>
                 <button onClick={generate} className="p-4 bg-white w-fit rounded-lg">Generate Question</button>
             </div>
         </div>
