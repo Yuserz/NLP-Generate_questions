@@ -6,7 +6,7 @@ export default function Table() {
             <div className="flex flex-col">
             <div className="overflow-x-auto shadow-md sm:rounded-lg">
                 <div className="inline-block min-w-full align-middle">
-                    <div className="overflow-hidden ">
+                    <div className="">
                         <table className="min-w-full divide-y divide-gray-200 table-fixed bg-amber-200">
                             <thead className=" bg-white">
                                 <tr>
