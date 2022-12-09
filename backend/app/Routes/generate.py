@@ -9,7 +9,13 @@ def generate():
     if request.method == 'POST':
         req = request.get_json()
 
-        result = t5model.generate_QA(req['context'])
+        try:
+            result = t5model.generate_QA(req['context'])
+        except Exception as e:
+            return Response(
+                status=500,
+                data=str(e)
+            )
 
         if not result:
             return Response(
