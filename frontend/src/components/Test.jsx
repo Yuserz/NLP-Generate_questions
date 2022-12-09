@@ -1,11 +1,13 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Check, X, Star } from 'react-feather'
 import { useNavigate } from 'react-router-dom'
 import { axiosRequest } from "api"
+import swal from "sweetalert2"
 
 export default function Test({ subject, topic, context, questions }) {
 
     const history_url = "/history"
+    const validate_url = "/history/validate"
 
     const [selected, setSelected] = useState([])
     const [correct, setCorrect] = useState([])
@@ -15,7 +17,43 @@ export default function Test({ subject, topic, context, questions }) {
 
     const [showModal, setModal] = useState(false)
 
+    const [conflict, setConflict] = useState(false)
+ 
     const navigate = useNavigate()
+
+    useEffect(() => {
+        const checkExist = async() => {
+            try {
+                const req = {context, questions}
+                const response = await axiosRequest.post(validate_url, req)
+                const { status } = response
+    
+                if (status === 200) {
+                    setConflict(false)
+                }
+
+            } catch(e) {
+                const {status} = e.response
+
+                if(status === 403) {
+                    setConflict(true)
+                    swal.fire({
+                        title: "Test already taken!",
+                        text: "It seems that you have already answered the generated questions.",
+                        icon: "warning",
+                        confirmButtonText: 'CONFIRM'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                          navigate('/Home', {replace: true})
+                        }
+                    })
+                }
+            }
+            
+        }
+
+        checkExist()
+    }, []) 
 
     const getLetter = (index) => {
         const letters = ['A', 'B', 'C', 'D']
@@ -180,20 +218,25 @@ export default function Test({ subject, topic, context, questions }) {
                         </div>
                     )
                 })}
-            </div>
-            {
-                !isSubmit ?
-                    <button className={
-                        (Object.keys(selected).length === questions.length) ?
-                            `rounded bg-blue-500 text-lg py-3 px-5 text-white hover:bg-blue-600`
-                            : `rounded border border-black text-lg py-3 px-5`
+                <div className="mt-5 flex items-center justify-center">
+                {
+                    !isSubmit ?
+                        <button className={
+                            (Object.keys(selected).length === questions.length) ?
+                                `rounded bg-blue-500 text-lg py-3 px-5 text-white hover:bg-blue-600`
+                                : `rounded border border-black text-lg py-3 px-5`
                         }
-                        onClick={submit}>
-                        SUBMIT ANSWER
-                    </button>
-                    : <button className="rounded bg-blue-500 text-lg py-3 px-5 text-white hover:bg-blue-600" onClick={generate}>GENERATE NEW QUESTIONS</button>
-            }
+                            onClick={submit}>
+                            SUBMIT ANSWER
+                        </button>
+                        : <div className="flex flex-col gap-y-3">
+                            {/* <button className="rounded bg-blue-500 text-lg py-3 px-5 text-white hover:bg-blue-600" onClick={retake}>RETAKE</button> */}
+                            <button className="rounded bg-green-500 text-lg py-3 px-5 text-white hover:bg-green-600" onClick={generate}>GENERATE NEW QUESTIONS</button>
+                        </div>
 
+                }
+                </div>
+            </div>
         </div>
     )
 }

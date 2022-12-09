@@ -91,3 +91,25 @@ def historyDetail(id):
             return Response(
                 status=404
             )
+
+@app.route('/history/validate', methods=['POST'])
+@login_required
+def validate():
+    if request.method == 'POST':
+        data = request.get_json()
+        questions = [i['question'] for i in data['questions']]
+
+        context = Context.query.filter_by(context=data['context']).first()
+
+        if context:
+            quest = Question.query.filter_by(context=context.id).all()
+
+            for question in quest:
+                if question.question in questions:
+                    return Response(
+                        status=403
+                    )
+            
+        return Response(
+            status=200
+        )
