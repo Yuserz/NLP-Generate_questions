@@ -6,7 +6,11 @@ from wonderwords import RandomWord
 import re
 import string
 
+# max generated question
 MAX_QUESTIONS = 5
+
+# accepted tags to be randomized when generating random choices
+accepted = ['NNS', 'NN', 'JJS', 'JJ', 'NNP', 'NNPS', 'VB', 'VBD']
 
 QModel_Allenai = "allenai/t5-small-squad2-question-generation"
 QModel_Thomas = "ThomasSimonini/t5-end2end-question-generation"
@@ -112,20 +116,26 @@ def getChoices(answer):
         def getRandomWord():
             word = random.choice(tokens)
             
-            if word[0] == '``' or word[0] == "''":
-                choice = getRandomWord()
-
-            if word[1] == 'JJS':
-                new =  r.word(include_parts_of_speech=["adjectives"])
-            else:
+            if word[1] in accepted:
+                new = word[0]
+                if word[1] == 'JJS' or word[1] == 'JJ':
+                    new =  r.word(include_parts_of_speech=["adjectives"])
+                
+                if word[1] == 'NN' or word[1] == 'NNS':
+                    new =  r.word(include_parts_of_speech=["noun"])
+                
+                if word[1] == 'VB' or word[1] == 'VBD':
+                    new = r.word(include_parts_of_speech=['verb'])
+                
                 if word[0].endswith("."):
                     new = random.choice(string.ascii_uppercase) + "."
-                else:
-                    new =  r.word(include_parts_of_speech=["noun"])
 
-            choice = answer.replace(word[0], new.capitalize() if word[0][0].isupper() else new)
+                choice = answer.replace(word[0], new.capitalize() if word[0][0].isupper() else new)
 
-            if choice in choices:
+                if choice in choices:
+                    choice = getRandomWord()
+            
+            else:
                 choice = getRandomWord()
 
             return choice
@@ -164,7 +174,7 @@ def generate_QA(context):
     
     for question in qThomas:
         answer = getAnswer(question, context)
-
+        
         if answer:
             choices = getChoices(answer)
             qa.append({'question': question, 'answer': answer, 'choices': choices })
