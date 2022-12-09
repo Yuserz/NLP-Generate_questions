@@ -52,7 +52,7 @@ export default function Test({ subject, topic, context, questions }) {
 
     const confirm = async () => {
         setModal(false)
-        
+
         try {
             const qa = questions.map((question, index) => {
                 return {
@@ -70,12 +70,12 @@ export default function Test({ subject, topic, context, questions }) {
                 score: score,
                 questions: qa
             }
- 
+
             const response = await axiosRequest.post(history_url, data)
             const { status } = response
-            
+
             if (status === 201) {
-                
+
             }
         }
         catch (e) {
@@ -112,8 +112,8 @@ export default function Test({ subject, topic, context, questions }) {
                         <div className="px-10 py-4">
                             <div className="flex flex-row gap-x-2 text-amber-300">
                                 {Object.keys(correct).map((key, index) => {
-                                    if (index < score) { return <Star size={40} fill="#FCD34D" key={index}/> }
-                                    else { return <Star size={40} key={index}/> }
+                                    if (index < score) { return <Star size={40} fill="#FCD34D" key={index} /> }
+                                    else { return <Star size={40} key={index} /> }
                                 })}
                             </div>
                             <p className="text-base mt-3">You've got a</p>
@@ -182,8 +182,16 @@ export default function Test({ subject, topic, context, questions }) {
                 })}
             </div>
             {
-                !isSubmit ? <button className="rounded border border-black w-40 p-3" onClick={submit}>SUBMIT ANSWER</button>
-                    : <button className="rounded border border-black p-3" onClick={generate}>GENERATE NEW QUESTIONS</button>
+                !isSubmit ?
+                    <button className={
+                        (Object.keys(selected).length === questions.length) ?
+                            `rounded bg-blue-500 text-lg py-3 px-5 text-white hover:bg-blue-600`
+                            : `rounded border border-black text-lg py-3 px-5`
+                        }
+                        onClick={submit}>
+                        SUBMIT ANSWER
+                    </button>
+                    : <button className="rounded bg-blue-500 text-lg py-3 px-5 text-white hover:bg-blue-600" onClick={generate}>GENERATE NEW QUESTIONS</button>
             }
 
         </div>
