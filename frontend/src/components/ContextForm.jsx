@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { axiosRequest } from "api"
 import { useNavigate } from 'react-router-dom'
+import swal from "sweetalert2"
 
 const initialState = {
     context: "",
@@ -16,6 +17,14 @@ export default function ContextForm() {
     const navigate = useNavigate()
 
     const generate = async () => {
+        if(!topic || !subject) {
+            swal.fire({
+                title: 'Please enter subject and topic!',
+                icon: "warning",
+              })
+              return
+        }
+
         try {
             const datas = { context }
             const response = await axiosRequest.post(url, datas)
@@ -26,8 +35,13 @@ export default function ContextForm() {
                 navigate('/Test', {state: {data: data.data, context: context, topic:topic, subject:subject}})
             }
 
-        } catch {
-
+        } catch (e){
+            const {data} = e.response
+            swal.fire({
+                title: 'Error when generating questions!',
+                text: 'Please remove special symbols or simplify the context first',
+                icon: "error",
+              }) 
         }
     }
 
