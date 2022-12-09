@@ -5,6 +5,8 @@ import random
 from wonderwords import RandomWord
 import re
 import string
+from word2number import w2n
+from num2words import num2words
 
 # max generated question
 MAX_QUESTIONS = 5
@@ -117,24 +119,31 @@ def getChoices(answer):
             word = random.choice(tokens)
             
             if word[1] in accepted:
-                new = word[0]
+                new = r.word(include_parts_of_speech=["noun"])
+
                 if word[1] == 'JJS' or word[1] == 'JJ':
                     new =  r.word(include_parts_of_speech=["adjectives"])
                 
-                if word[1] == 'NN' or word[1] == 'NNS':
+                if word[1] == 'NN' or word[1] == 'NNS' or word[1]=='NNP':
                     new =  r.word(include_parts_of_speech=["noun"])
                 
                 if word[1] == 'VB' or word[1] == 'VBD':
                     new = r.word(include_parts_of_speech=['verb'])
                 
-                if word[0].endswith("."):
-                    new = random.choice(string.ascii_uppercase) + "."
-
                 choice = answer.replace(word[0], new.capitalize() if word[0][0].isupper() else new)
 
                 if choice in choices:
                     choice = getRandomWord()
-            
+
+            elif word[1] == 'CD':
+                num = w2n.word_to_num(word[0])
+                rand = random.randint(num-3, num+3)
+                new = num2words(rand)
+
+                choice = answer.replace(word[0], new.capitalize() if word[0][0].isupper() else new)
+                if choice in choices:
+                    choice = getRandomWord()
+                                   
             else:
                 choice = getRandomWord()
 
@@ -174,7 +183,7 @@ def generate_QA(context):
     
     for question in qThomas:
         answer = getAnswer(question, context)
-        
+
         if answer:
             choices = getChoices(answer)
             qa.append({'question': question, 'answer': answer, 'choices': choices })
