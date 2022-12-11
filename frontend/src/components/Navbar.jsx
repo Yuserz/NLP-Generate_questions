@@ -7,7 +7,7 @@ export default function Navbar() {
   };
 
   let activeClassName = " m-4 font-bold";
-  let inActiveClassName = "pl-2 hover:bg-amber-200";
+  let inActiveClassName = "pl-2 w-full hover:bg-amber-200";
 
   return (
     <nav className=" bg-white w-40 border-gray-200 drop-shadow">

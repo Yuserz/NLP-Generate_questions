@@ -1,4 +1,4 @@
-import { ContextForm, Header,  Navbar } from "components"
+import { Header,  Navbar } from "components"
 
 export default function Topics() {
     return (
@@ -7,7 +7,9 @@ export default function Topics() {
         <div className="m-auto h-full flex justify-between">
             <Navbar />
             <div className=" w-full p-2 h-full bg-amber-200 ">
-                
+                <div className="bg-white flex">
+                  
+                </div>
             </div>
        </div>
     </div> 
