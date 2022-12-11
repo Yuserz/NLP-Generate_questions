@@ -5,9 +5,7 @@ import { axiosRequest } from "api"
 export default function History() {
       const url = "/history"
 
-
       const [ data, setData ] = useState(0);
-
       useEffect(() => {
         const showData = async() => {
             const response = await axiosRequest.get(url)

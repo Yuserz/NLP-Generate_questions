@@ -5,7 +5,9 @@ import {
   SignUp,
   NotFound,
   TestPage,
-  History
+  History,
+  Topics,
+  AboutUs
 } from "pages"
 
 function App() {
@@ -18,6 +20,8 @@ function App() {
         <Route exact path="/Home" element={<Home />}/>
         <Route exact path="/Test" element={<TestPage />}/>
         <Route exact path="/History" element={<History />}/>
+        <Route exact path="/Topics" element={<Topics />}/>
+        <Route exact path="/AboutUs" element={<AboutUs />}/>
       </Routes>
     </Router>
   )

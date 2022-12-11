@@ -1,6 +1,6 @@
 import { ContextForm, Header,  Navbar } from "components"
 
-export default function AboutUs() {
+export default function Topics() {
     return (
     <div className="grid-container w-screen h-screen bg-slate-50  ">
         <Header />
