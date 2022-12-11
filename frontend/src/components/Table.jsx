@@ -4,24 +4,24 @@ export default function Table({ data }) {
     console.log(data)
 
     return (
-        <div className="max-w-2xl mx-auto">
+        <div className="w-full mx-auto">
             <div className="flex flex-col">
                 <div className="overflow-x-auto shadow-md sm:rounded-lg">
                     <div className="inline-block min-w-full align-middle">
                         <div className="">
-                            <table className="min-w-full divide-y divide-gray-200 table-fixed bg-amber-200">
+                            <table className="min-w-full divide-y divide-gray-200 table-fixed">
                                 <thead className=" bg-white">
                                     <tr>
-                                        <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left uppercase dark:text-black-500">
+                                        <th scope="col" className="py-3 px-6 text-xs font-bold tracking-wider text-left uppercase dark:text-black-500">
                                             Subject
                                         </th>
-                                        <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left uppercase dark:text-black-500">
+                                        <th scope="col" className="py-3 px-6 text-xs font-bold tracking-wider text-left uppercase dark:text-black-500">
                                             Topic
                                         </th>
-                                        <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left uppercase dark:text-black-500">
+                                        <th scope="col" className="py-3 px-6 text-xs font-bold tracking-wider text-left uppercase dark:text-black-500">
                                             Score
                                         </th>
-                                        <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left uppercase dark:text-black-500">
+                                        <th scope="col" className="py-3 px-6 text-xs font-bold tracking-wider text-left uppercase dark:text-black-500">
                                             Date
                                         </th>
                                         <th scope="col" className="p-4">
@@ -33,7 +33,7 @@ export default function Table({ data }) {
                                     <tbody className="bg-white">
                                         {data.map((context) => {
                                             return (
-                                                <tr key={context.id} className="">
+                                                <tr key={context.id} className="divide-gray-200">
                                                     <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-black opacity-50">{context.subject}</td>
                                                     <td className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-black opacity-50">{context.topic}</td>
                                                     <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-black opacity-50">{context.score}</td>

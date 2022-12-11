@@ -26,8 +26,6 @@ export default function History() {
             <Navbar className="bg-amber-200 font-bold" />
             <div className="flex flex-col gap-5  items-center w-screen p-10 bg-amber-200 ">
                 <Table data={data} />
-                    
-                {/* <button onClick={showRecord} className=" shadow-md p-4 bg-white w-fit rounded-lg">Show Record</button> */}
             </div>
         </div>
     </div> 
