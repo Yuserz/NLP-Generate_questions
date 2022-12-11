@@ -39,7 +39,7 @@ export default function Table({ data }) {
                                                     <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-black opacity-50">{context.score}</td>
                                                     <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-black opacity-50">{context.dateCreated}</td>
                                                     <td className="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
-                                                        <a href="#" className="text-green-600 dark:text-green-500 hover:bg-green-300 bg-green-100  rounded-full pt-1 pb-1 pl-3 pr-3">View</a>
+                                                        <a href={`/History/Test?id=${context.id}`} className="text-green-600 dark:text-green-500 hover:bg-green-300 bg-green-100  rounded-full pt-1 pb-1 pl-3 pr-3">View</a>
                                                     </td>
                                                 </tr>
                                             )

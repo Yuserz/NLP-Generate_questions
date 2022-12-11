@@ -65,10 +65,11 @@ def history():
             status=200
         )
                 
-@app.route('/history/<id>', methods=['GET', 'DELETE'])
+@app.route('/history/test', methods=['GET', 'DELETE'])
 @login_required
-def historyDetail(id):
+def historyDetail():
     if request.method == 'GET':
+        id = request.args.get('id')
         context = Context.query.get(id)
         if context:
             res = context.to_dict(exclude='user')

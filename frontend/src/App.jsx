@@ -7,7 +7,8 @@ import {
   TestPage,
   History,
   Topics,
-  AboutUs
+  AboutUs,
+  TestHistory
 } from "pages"
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route exact path="/History" element={<History />}/>
         <Route exact path="/Topics" element={<Topics />}/>
         <Route exact path="/AboutUs" element={<AboutUs />}/>
+        <Route exact path="/History/Test" element={<TestHistory />}/>
       </Routes>
     </Router>
   )
