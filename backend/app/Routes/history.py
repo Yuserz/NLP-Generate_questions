@@ -65,13 +65,19 @@ def history():
             status=200
         )
                 
-@app.route('/history/test', methods=['GET', 'DELETE'])
+@app.route('/history/test', methods=['GET'])
 @login_required
 def historyDetail():
     if request.method == 'GET':
         id = request.args.get('id')
         context = Context.query.get(id)
+
         if context:
+            if current_user.id != context.user:
+                return Response(
+                    status=404
+                )
+
             res = context.to_dict(exclude='user')
             questions = Question.query.filter_by(context=context.id).all()
 

@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
 import { axiosRequest } from 'api'
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams, useNavigate } from 'react-router-dom'
 
 export default function TestHistory() {
     const [data, setData] = useState([])
     const [searchParams] = useSearchParams()
+    const navigate = useNavigate()
+
     const url = `/history/test?id=${searchParams.get("id")}`
 
     useEffect(() => {
@@ -22,12 +24,13 @@ export default function TestHistory() {
                 const {status} = e.response
                 if (status===404) {
                     // code when no context is found
+                    navigate('/404')
                 }
             }
         }
 
         getHistoryData()
-    }, [])
+    }, [navigate, url])
 
     return (
         <div>
