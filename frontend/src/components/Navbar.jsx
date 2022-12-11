@@ -12,7 +12,7 @@ export default function Navbar() {
   return (
     <nav className=" bg-white w-40 border-gray-200 drop-shadow">
       <ul className=" mt-6">
-        <li className="w-full p-4  hover:bg-amber-200">
+        <li className="w-full p-4 hover:bg-amber-200">
           <NavLink
             to="/Home"
             style={({ isActive }) =>
@@ -22,7 +22,7 @@ export default function Navbar() {
             Home
           </NavLink>
         </li>
-       <li  className="w-full p-4   hover:bg-amber-200">
+       <li  className="w-full p-4 hover:bg-amber-200">
           <NavLink
             to="/Topics"
             className={({ isActive }) =>
@@ -32,7 +32,7 @@ export default function Navbar() {
             Topics
           </NavLink>
         </li>
-        <li  className="w-full p-4   hover:bg-amber-200">
+        <li  className="w-full p-4 hover:bg-amber-200">
           <NavLink
             to="/History"
             className={({ isActive }) =>
@@ -42,7 +42,7 @@ export default function Navbar() {
             History
           </NavLink>
         </li>
-        <li className="w-full p-4   hover:bg-amber-200">
+        <li className="w-full p-4 hover:bg-amber-200">
           <NavLink
             to="/AboutUs"
             className={({ isActive }) =>

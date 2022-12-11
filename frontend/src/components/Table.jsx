@@ -4,12 +4,12 @@ export default function Table({ data }) {
     console.log(data)
 
     return (
-        <div className="w-full mx-auto">
+        <div className="w-4/5 mx-auto">
             <div className="flex flex-col">
                 <div className="overflow-x-auto shadow-md sm:rounded-lg">
                     <div className="inline-block min-w-full align-middle">
                         <div className="">
-                            <table className="min-w-full divide-y divide-gray-200 table-fixed">
+                            <table className="min-w-full divide-y-2 bg-white divide-gray-300 table-fixed">
                                 <thead className=" bg-white">
                                     <tr>
                                         <th scope="col" className="py-3 px-6 text-xs font-bold tracking-wider text-left uppercase dark:text-black-500">
@@ -33,8 +33,8 @@ export default function Table({ data }) {
                                     <tbody className="bg-white">
                                         {data.map((context) => {
                                             return (
-                                                <tr key={context.id} className="divide-gray-200">
-                                                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-black opacity-50">{context.subject}</td>
+                                                <tr key={context.id} className=" border border-gray-100">
+                                                    <td className=" py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-black opacity-50">{context.subject}</td>
                                                     <td className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-black opacity-50">{context.topic}</td>
                                                     <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-black opacity-50">{context.score}</td>
                                                     <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-black opacity-50">{context.dateCreated}</td>
