@@ -3,8 +3,8 @@ import { NavLink } from "react-router-dom";
 
 // Define the active/inactive class names in an object
 const styles = {
-  active: "m-4 font-bold",
-  inactive: "pl-2 w-full hover:bg-amber-200"
+  active: "m-4 font-bold bg-amber-200",
+  inactive: "pl-2 w-full hover:bg-amber-200",
 };
 
 export default function Navbar() {
@@ -12,27 +12,27 @@ export default function Navbar() {
   const items = [
     {
       title: "Home",
-      path: "/Home"
+      path: "/Home",
     },
     {
       title: "Topics",
-      path: "/Topics"
+      path: "/Topics",
     },
     {
       title: "History",
-      path: "/History"
+      path: "/History",
     },
     {
       title: "About Us",
-      path: "/AboutUs"
-    }
+      path: "/AboutUs",
+    },
   ];
 
   return (
     <nav className="bg-white w-40 border-gray-200 drop-shadow">
       <ul className="mt-6">
         {/* Use map() to generate the list items from the items array */}
-        {items.map(item => (
+        {items.map((item) => (
           <li className="w-full p-4 hover:bg-amber-200">
             <NavLink
               to={item.path}
@@ -40,6 +40,9 @@ export default function Navbar() {
               className={({ isActive }) =>
                 isActive ? styles.active : styles.inactive
               }
+              activeStyle={{
+                backgroundColor: "amber-200",
+              }}
             >
               {item.title}
             </NavLink>

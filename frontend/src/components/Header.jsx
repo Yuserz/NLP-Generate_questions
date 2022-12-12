@@ -1,9 +1,4 @@
 import React from "react"
-import Search from "./Search"
-import UserAvatar from "./UserAvatar"
-
-
-
 export default function Header() {
     return (
         <div className="bg-white relative flex shadow-md justify-between items-center h-24 w-screen m-auto p-4">
