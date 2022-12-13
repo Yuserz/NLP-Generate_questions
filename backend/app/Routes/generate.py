@@ -5,6 +5,7 @@ from app.Components.response import Response
 from app.T5 import t5model
 
 @app.route('/generate', methods=['POST'])
+@login_required
 def generate():
     if request.method == 'POST':
         req = request.get_json()
