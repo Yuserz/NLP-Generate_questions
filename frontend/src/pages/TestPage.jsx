@@ -28,6 +28,7 @@ export default function TestPage() {
                             topic={location.state.topic}
                             context={location.state.context}
                             questions={location.state.data}
+                            conID={location.state.conID}
                         /> : null
                     }
                 </div>

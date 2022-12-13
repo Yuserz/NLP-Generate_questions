@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { axiosRequest } from "api"
 import swal from "sweetalert2"
 
-export default function Test({ subject, topic, context, questions }) {
+export default function Test({ subject, topic, context, questions, conID}) {
 
     const history_url = "/history"
     const validate_url = "/history/validate"
@@ -13,13 +13,12 @@ export default function Test({ subject, topic, context, questions }) {
     const [correct, setCorrect] = useState([])
     const [score, setScore] = useState(0)
     const [isSubmit, setSubmit] = useState(false)
-    const [showContext, setShowContext] = useState(false)
 
     const [showModal, setModal] = useState(false)
-
-    const [conflict, setConflict] = useState(false)
  
     const navigate = useNavigate()
+
+    const [contextID, setContextID] = useState(conID)
 
     useEffect(() => {
         const checkExist = async() => {
@@ -29,14 +28,13 @@ export default function Test({ subject, topic, context, questions }) {
                 const { status } = response
     
                 if (status === 200) {
-                    setConflict(false)
+                    return
                 }
 
             } catch(e) {
                 const {status} = e.response
 
                 if(status === 403) {
-                    setConflict(true)
                     swal.fire({
                         title: "Test already taken!",
                         text: "It seems that you have already answered the generated questions.",
@@ -52,8 +50,10 @@ export default function Test({ subject, topic, context, questions }) {
             
         }
 
-        checkExist()
-    }, []) 
+        if (!contextID) {
+            checkExist()
+        }
+    }, [navigate, contextID]) 
 
     const getLetter = (index) => {
         const letters = ['A', 'B', 'C', 'D']
@@ -84,10 +84,6 @@ export default function Test({ subject, topic, context, questions }) {
         setCorrect((prevState) => ({ ...prevState, [name]: answer === choice ? true : false }))
     }
 
-    const show = () => {
-        setShowContext(prevState => !prevState)
-    }
-
     const confirm = async () => {
         setModal(false)
 
@@ -101,19 +97,19 @@ export default function Test({ subject, topic, context, questions }) {
                 }
             })
 
-            const data = {
+            const req = {
                 topic: topic,
                 subject: subject,
                 context: context,
                 score: score,
-                questions: qa
+                questions: qa,
+                id: contextID ? contextID : null
             }
-
-            const response = await axiosRequest.post(history_url, data)
-            const { status } = response
+            const response = await axiosRequest.post(history_url, req)
+            const { status, data } = response
 
             if (status === 201) {
-
+                navigate(`/History/Test?id=${data.data.id}`, {replace: true})
             }
         }
         catch (e) {
@@ -122,7 +118,14 @@ export default function Test({ subject, topic, context, questions }) {
     }
 
     const retake = () => {
-        window.location.reload(true);
+        const d = {
+            data: questions,
+            context: context,
+            topic: topic,
+            subject: subject,
+            conID: contextID
+        }
+        navigate(0, {state: d, replace: true})
     }
 
     const generate = () => {
@@ -131,14 +134,6 @@ export default function Test({ subject, topic, context, questions }) {
 
     return (
         <div className="flex flex-col gap-y-5 items-center">
-            {/* {showContext ?
-                <div className="bg-white p-5 rounded-lg">
-                    {context}
-                </div>
-                : null
-            }
-            <button className="rounded border border-black w-40 p-3" onClick={show}>{showContext ? 'Hide' : 'Show'} Context</button> */}
-
             {showModal ?
                 <div className="w-full h-full bg-black/25 fixed top-0 left-0 right-0 z-50 flex flex-col justify-center items-center">
                     <div className="flex flex-col bg-white rounded text-center">

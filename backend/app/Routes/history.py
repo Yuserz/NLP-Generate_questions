@@ -6,6 +6,7 @@ from app.Components.response import Response
 from app.Models.context import Context
 from app.Models.choices import Choice
 from app.Models.questions import Question
+from sqlalchemy.sql import func
 
 @app.route('/history', methods=['POST', 'GET'])
 @login_required
@@ -19,15 +20,32 @@ def history():
         datas = data['questions']
         score = data['score']
 
-        context = Context(
-            context=context,
-            subject=subject,
-            topic=topic,
-            user=current_user.id,
-            score=score
-        )
+        contextID = data['id']
 
-        context.create()
+        if contextID:
+            context = Context.query.get(contextID)
+            context.score=score
+            context.dateCreated=func.now()
+            context.update()
+
+            questions = Question.query.filter_by(context=context.id).all()
+
+            for question in questions:
+                choices = Choice.query.filter_by(question=question.id).all()
+                for choice in choices:
+                    choice.delete()
+                question.delete()
+
+        else:
+            context = Context(
+                context=context,
+                subject=subject,
+                topic=topic,
+                user=current_user.id,
+                score=score
+            )
+
+            context.create()
 
         for dat in datas:
             quest = Question(
@@ -49,6 +67,7 @@ def history():
     
         return Response(
             status=201,
+            data={'id': context.id}
         )
     
     if request.method == 'GET':

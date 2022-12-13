@@ -41,8 +41,19 @@ export default function TestHistory() {
         return letters[index]
     }
 
+    const retake = () => {
+        const d = {
+            data: questions,
+            context: data.context,
+            topic: data.topic,
+            subject: data.subject,
+            conID: data.id
+        }
+        navigate('/Test', {state: d, replace: true})
+    }
+
     return (
-        <div className="grid-container w-screen h-full bg-slate-50  ">
+        <div className="grid-container bg-slate-50  ">
             <Header />
             <div className="m-auto h-full flex justify-between">
                 <Navbar />
@@ -51,12 +62,19 @@ export default function TestHistory() {
                         <>
                             <div className="flex flex-col m-8 gap-y-10 items-center ">
                                 <div className=" flex flex-col w-full space-y-5 items-center">
-                                    <div className="flex space-x-4 w-[100%]">
-                                        <textarea name="subject" value={data.subject} cols="20" rows="1" placeholder="Subject" className="shadow-inner outline-gray-300 resize-none p-2 rounded-lg"></textarea>
-                                        <textarea name="topic" value={data.topic} cols="20" rows="1" placeholder="Topic" className="shadow-inner outline-gray-300 resize-none p-2 rounded-lg"></textarea>
+                                    <div className="flex flex-row justify-between w-full">
+                                        <div className="flex flex-row gap-x-2">
+                                            <textarea name="subject" value={data.subject} cols="20" rows="1" placeholder="Subject" className="shadow-inner outline-gray-300 resize-none p-2 rounded-lg"></textarea>
+                                            <textarea name="topic" value={data.topic} cols="20" rows="1" placeholder="Topic" className="shadow-inner outline-gray-300 resize-none p-2 rounded-lg"></textarea>
+                                        </div>
+                                        <div className="flex flex-row gap-x-1 text-white ">
+                                            {Array.from(Array(questions.length).keys()).map((index) => {
+                                                if (index < data.score) { return <Star size={40} fill="#FFA500" key={index} /> }
+                                                else { return <Star size={40} key={index} fill="#FEF3C7" /> }
+                                            })}
+                                        </div>
                                     </div>
                                     <textarea name="context" value={data.context} rows="18" className="shadow-inner outline-gray-300 rounded-lg block resize-none p-2.5 w-full h-full text-sm " placeholder="Input your context here..."></textarea>
-
                                 </div>
                             </div>
                             <p className="font-medium mx-8">MULTIPLE CHOICE TEST </p>
@@ -109,6 +127,9 @@ export default function TestHistory() {
                                         </div>
                                     )
                                 })}
+                            </div>
+                            <div className="flex justify-center w-full mt-2">
+                                <button onClick={retake} className="bg-blue-500 rounded px-10 py-3 text-xl text-white">RETAKE</button>
                             </div>
                         </>
                         : null
