@@ -22,7 +22,6 @@ export default function TestHistory() {
                 if (status === 200) {
                     setData(data.data)
                     setQuestions(data.data.questions)
-                    console.log(data.data)
                 }
             }
             catch (e) {

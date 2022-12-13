@@ -1,8 +1,7 @@
 import React from "react"
 
 export default function Table({ data }) {
-    console.log(data)
-
+    
     return (
         <div className="w-4/5 mx-auto">
             <div className="flex flex-col">
