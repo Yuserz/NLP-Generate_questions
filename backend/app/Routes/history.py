@@ -8,7 +8,7 @@ from app.Models.choices import Choice
 from app.Models.questions import Question
 from sqlalchemy.sql import func
 
-@app.route('/history', methods=['POST', 'GET'])
+@app.route('/history', methods=['POST', 'GET', 'DELETE'])
 @login_required
 def history():
     if request.method == 'POST':
@@ -83,6 +83,21 @@ def history():
             data=res,
             status=200
         )
+
+    if request.method == 'DELETE':
+        contexts = Context.query.filter_by(user=current_user.id).all()
+        for context in contexts:
+            questions = Question.query.filter_by(context=context.id).all()
+            for question in questions:
+                choices = Choice.query.filter_by(question=question.id).all()
+                for choice in choices:
+                    choice.delete()
+                question.delete()
+            context.delete()
+            
+        return Response(
+            status=200
+        )
                 
 @app.route('/history/test', methods=['GET'])
 @login_required
@@ -139,3 +154,4 @@ def validate():
         return Response(
             status=200
         )
+
