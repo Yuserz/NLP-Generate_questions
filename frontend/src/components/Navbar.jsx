@@ -40,9 +40,6 @@ export default function Navbar() {
               className={({ isActive }) =>
                 isActive ? styles.active : styles.inactive
               }
-              activeStyle={{
-                backgroundColor: "amber-200",
-              }}
             >
               {item.title}
             </NavLink>
