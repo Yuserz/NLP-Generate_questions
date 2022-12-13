@@ -69,7 +69,7 @@ export default function Topics() {
   ]
 
   return (
-    <div className="grid-container w-screen h-full bg-slate-50">
+    <div className="grid-container bg-slate-50">
       <Header />
       <div className="m-auto h-full flex justify-between">
         <Navbar />

@@ -2,11 +2,11 @@ import { Header, Navbar } from "components";
 
 export default function AboutUs() {
   return (
-    <div className="grid-container w-screen h-full bg-slate-50  ">
+    <div className="grid-container bg-slate-50 overflow-x-hidden">
       <Header />
       <div className="m-auto h-full flex justify-between">
         <Navbar />
-        <div className="flex m-0  justify-center w-full h-full bg-amber-200  ">
+        <div className="flex m-0  justify-center w-screen p-10 bg-amber-200">
           <div className="flex flex-col mt-10 mb-10 gap-10 w-3/4 bg-white p-10 pr-20 pl-20 h-fit justify-between shadow-md rounded-xl">
             <div className="flex flex-col space-y-2 bg-white shadow-sm p-4 border rounded-xl opacity-80">
               <h1 className="font-bold bg-gray-200 p-2 rounded-md">ABOUT US</h1>

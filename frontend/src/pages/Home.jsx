@@ -2,11 +2,11 @@ import { ContextForm, Header,  Navbar } from "components"
 
 export default function Home() {
     return (
-    <div className="grid-container w-screen h-screen bg-slate-50  ">
+    <div className="grid-container bg-slate-50">
         <Header />
-        <div className="m-auto h-full flex justify-between">
+        <div className="flex justify-between">
             <Navbar />
-            <div className=" w-full p-2 h-full bg-amber-200 ">
+            <div className="w-screen p-10 bg-amber-200 ">
                 <ContextForm />
             </div>
        </div>
