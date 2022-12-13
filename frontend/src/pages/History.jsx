@@ -22,14 +22,12 @@ export default function History() {
     return (
         <div className="grid-container bg-slate-50">
             <Header />
-            {data ?
                 <div className="m-auto h-full min-h-screen flex justify-between">
                     <Navbar className="bg-amber-200 font-bold" />
                     <div className="flex flex-col gap-5 items-center w-screen p-10 bg-amber-200">
                         <Table data={data} />
                     </div>
                 </div>
-                : null}
         </div>
     )
 }
