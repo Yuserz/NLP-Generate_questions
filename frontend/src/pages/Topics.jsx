@@ -1,6 +1,23 @@
 import { Header, Navbar } from "components";
-
+import { useEffect } from 'react'
+import { axiosRequest } from "api";
+import { useNavigate } from "react-router-dom";
 export default function Topics() {
+  const navigate = useNavigate()
+  useEffect(() => {
+    const checkLogin = async () => {
+      const response = await axiosRequest.get('/login')
+      const { status, data } = response
+      if (status === 200) {
+        if (!data.data) {
+          navigate('/')
+        }
+      }
+    }
+    checkLogin()
+  }, [])
+
+
   const TopicLink = ({ topic }) => (
     <a
       target="_blank"

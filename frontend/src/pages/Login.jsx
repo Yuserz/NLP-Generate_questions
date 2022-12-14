@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { InputField } from "components"
 import { Link, useNavigate } from "react-router-dom"
 import { axiosRequest } from "api"
@@ -20,6 +20,19 @@ const initialState = {
     const { name, value } = event.target
     setState((prevState) => ({ ...prevState, [name]: value }))
   }
+
+  useEffect(() => {
+    const checkLogin = async () => {
+      const response = await axiosRequest.get('/login')
+      const { status, data } = response
+      if (status === 200) {
+        if (data.data) {
+          navigate('/Home')
+        }
+      }
+    }
+    checkLogin()
+  }, [])
 
   const onSubmit = async (event) => {
     event.preventDefault()
@@ -64,7 +77,7 @@ const initialState = {
       <form className="m-w-[50%] w-[400px] h-fit" onSubmit={(event) => onSubmit(event)}>
         <div className="py-8">
           <h1 className="text-4xl font-bold my-2">
-            Study Buddy
+            Study Budy
           </h1>
         </div>
 

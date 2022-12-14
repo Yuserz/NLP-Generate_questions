@@ -1,11 +1,13 @@
 import { Header, Navbar, Table } from "components"
 import { useState, useEffect } from "react"
 import { axiosRequest } from "api"
+import { useNavigate } from "react-router-dom"
 
 export default function History() {
     const url = "/history"
 
     const [data, setData] = useState(0);
+
     useEffect(() => {
         const showData = async () => {
             const response = await axiosRequest.get(url)
@@ -18,6 +20,19 @@ export default function History() {
         showData();
     }, []);
 
+    const navigate = useNavigate()
+    useEffect(() => {
+        const checkLogin = async () => {
+            const response = await axiosRequest.get('/login')
+            const { status, data } = response
+            if (status === 200) {
+                if (!data.data) {
+                    navigate('/')
+                }
+            }
+        }
+        checkLogin()
+    }, [])
 
     return (
         <div className="grid-container bg-slate-50">
