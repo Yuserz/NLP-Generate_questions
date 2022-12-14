@@ -72,7 +72,7 @@ export default function ContextForm() {
             cols="20"
             rows="1"
             placeholder="Subject"
-            className="shadow-inner outline-gray-300 resize-none p-2 rounded-lg"
+            className="shadow-inner h-full outline-gray-300 resize-none p-2 rounded-lg"
           ></textarea>
           <textarea
             name="topic"

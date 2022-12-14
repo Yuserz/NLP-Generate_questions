@@ -2,7 +2,7 @@ import { ContextForm, Header,  Navbar } from "components"
 
 export default function Home() {
     return (
-    <div className="grid-container h-screen overflow-hidden bg-slate-50">
+    <div className="grid-container h-screen  bg-slate-50">
         <Header />
         <div className="h-full flex justify-between">
             <Navbar />
