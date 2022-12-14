@@ -7,9 +7,11 @@ export default function Header() {
 
     const navigate = useNavigate();
 
-    function onClick() {
-      axiosRequest.post("/logout")
-      navigate('/')
+    const onClick = async() => {
+      const response = await axiosRequest.post("/logout")
+      if(response.status === 200) {
+        navigate('/')
+      }
     }
 
     return (

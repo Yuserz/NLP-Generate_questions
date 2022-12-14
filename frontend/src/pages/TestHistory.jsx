@@ -26,10 +26,11 @@ export default function TestHistory() {
             }
             catch (e) {
                 const { status } = e.response
-                if (status === 404) {
+                if (status === 404 || status == 401) {
                     // code when no context is found
                     navigate('/404')
                 }
+
             }
         }
 
