@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 // Define the active/inactive class names in an object
 const styles = {
-  active: "pl-4 pr-16 p-4 font-bold bg-amber-200 ",
+  active: "pl-4 pr-16 p-4 font-bold bg-amber-200 shadow-md",
   inactive: " pl-2 pr-14 p-4 hover:bg-amber-200 ",
 };
 
