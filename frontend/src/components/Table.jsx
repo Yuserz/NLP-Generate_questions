@@ -33,8 +33,8 @@ export default function Table({ data }) {
                                         {data.map((context) => {
                                             return (
                                                 <tr key={context.id} className=" border border-gray-100">
-                                                    <td className=" py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-black opacity-50">{context.subject}</td>
-                                                    <td className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-black opacity-50">{context.topic}</td>
+                                                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-black opacity-50 uppercase">{context.subject}</td>
+                                                    <td className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-black opacity-50 uppercase">{context.topic}</td>
                                                     <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-black opacity-50">{context.score}</td>
                                                     <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-black opacity-50">{context.dateCreated}</td>
                                                     <td className="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">

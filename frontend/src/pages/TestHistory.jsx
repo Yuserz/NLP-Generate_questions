@@ -67,24 +67,24 @@ export default function TestHistory() {
                                         <div className="flex flex-row gap-x-4 items-end">
                                             <div className="flex flex-row bg-white items-center rounded-md overflow-hidden w-52">
                                                 <div className="bg-gray-400 h-full flex items-center p-2 px-3">
-                                                    <p className="text-base font-medium">Subject</p>
+                                                    <p className="text-base font-medium uppercase">Subject</p>
                                                 </div>
-                                                <p className="p-2 text-base text-gray-700">{data.subject}</p>
+                                                <p className="p-2 text-base text-gray-700 uppercase">{data.subject}</p>
                                             </div>
                                             <div className="flex flex-row bg-white items-center rounded-md overflow-hidden w-52">
                                                 <div className="bg-gray-400 h-full flex items-center p-2 px-3">
-                                                    <p className="text-base font-medium">Topic</p>
+                                                    <p className="text-base font-medium uppercase">Topic</p>
                                                 </div>
-                                                <p className="p-2 text-base text-gray-700">{data.topic}</p>
+                                                <p className="p-2 text-base text-gray-700 uppercase">{data.topic}</p>
                                             </div>
                                         </div>
 
                                         <div className="flex flex-col gap-y-3 justify-end w-32">
-                                            <button onClick={retake} className="bg-blue-500 rounded px-5 py-2 text-white">Retake Test</button>
+                                            <button onClick={retake} className="bg-green-300 rounded-lg px-5 py-2 font-bold">Retake Test</button>
                                             <div className="flex flex-col">
                                                 <div className="flex flex-row bg-white items-center rounded-md overflow-hidden">
                                                     <div className="bg-gray-400 h-full flex items-center p-2 px-3">
-                                                        <p className="text-base font-medium">Score</p>
+                                                        <p className="text-base font-medium uppercase">Score</p>
                                                     </div>
                                                     <p className="p-2 text-base text-gray-700">{data.score}/{questions.length}</p>
                                                 </div>
@@ -93,7 +93,7 @@ export default function TestHistory() {
                                         </div>
 
                                     </div>
-                                    <textarea name="context" value={data.context} rows="18" className="shadow-inner outline-gray-300 rounded-lg block resize-none p-2.5 w-full h-full text-sm " placeholder="Input your context here..."></textarea>
+                                    <textarea name="context" value={data.context}  className="shadow-inner outline-gray-300 rounded-lg block resize-none p-4 w-full h-fit text-sm " placeholder="Input your context here..."></textarea>
                                 </div>
                             </div>
                             <p className="font-medium mx-8">MULTIPLE CHOICE TEST </p>
