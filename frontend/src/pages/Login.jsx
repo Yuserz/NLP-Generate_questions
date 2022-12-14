@@ -64,7 +64,7 @@ const initialState = {
       <form className="m-w-[50%] w-[400px] h-fit" onSubmit={(event) => onSubmit(event)}>
         <div className="py-8">
           <h1 className="text-4xl font-bold my-2">
-            Study Budy
+            Study Buddy
           </h1>
         </div>
 
