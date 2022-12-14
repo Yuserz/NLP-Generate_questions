@@ -6,7 +6,7 @@ export default function Home() {
         <Header />
         <div className="flex justify-between">
             <Navbar />
-            <div className="w-screen p-10 bg-amber-200 ">
+            <div className="w-screen h-screen p-10 bg-amber-200 ">
                 <ContextForm />
             </div>
        </div>

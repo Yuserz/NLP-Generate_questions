@@ -68,7 +68,7 @@ const initialState = {
           </h1>
         </div>
 
-        <div class="mb-6">
+        <div className="mb-6">
           <InputField
             type="text"
             name="email"
@@ -80,7 +80,7 @@ const initialState = {
           />
         </div>
 
-        <div class="mb-6">
+        <div className="mb-6">
           <InputField
             type="password"
             name="password"
@@ -91,14 +91,14 @@ const initialState = {
             required
           />
         </div>
-        <div class="text-center lg:text-left">
+        <div className="text-center lg:text-left">
           <button
             type="submit"
             class="bg-white hover:bg-amber-400 max-w-[400px] w-full rounded-md p-4 shadow-md hover:shadow-xl font-bold text-xl"
           >
             Login
           </button>
-          <p class=" text-sm font-semibold mt-2 pt-1 mb-0">
+          <p className=" text-sm font-semibold mt-2 pt-1 mb-0">
             Don't have an account?
             <Link
               to="/SignUp"

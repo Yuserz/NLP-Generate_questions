@@ -3,7 +3,7 @@ import React from "react"
 export default function Table({ data }) {
     
     return (
-        <div className="w-4/5 mx-auto">
+        <div className="w-full select-none mx-auto">
             <div className="flex flex-col">
                 <div className="overflow-x-auto shadow-md sm:rounded-lg">
                     <div className="inline-block min-w-full align-middle">
