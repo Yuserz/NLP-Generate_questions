@@ -7,11 +7,16 @@ import { Check, X, Star } from 'react-feather'
 export default function TestHistory() {
     const [data, setData] = useState([])
     const [searchParams] = useSearchParams()
+    const [height, setHeight] = useState('150px');
     const navigate = useNavigate()
 
     const url = `/history/test?id=${searchParams.get("id")}`
 
     const [questions, setQuestions] = useState([])
+
+    const handleResize = (event) => {
+        setHeight(event.target.scrollHeight);
+      }
 
     useEffect(() => {
         const getHistoryData = async () => {
@@ -62,20 +67,20 @@ export default function TestHistory() {
                     {data ?
                         <>
                             <div className="flex flex-col m-8 mt-5 gap-y-10 items-center ">
-                                <div className=" flex flex-col w-full space-y-5 items-center">
+                                <div className=" flex flex-col w-full h-fit space-y-5 items-center">
                                     <div className="flex flex-row justify-between w-full">
                                         <div className="flex flex-row gap-x-4 items-end">
-                                            <div className="flex flex-row bg-white shadow-inner items-center rounded-md overflow-hidden w-52 dark:bg-zinc-800/50">
+                                            <div className="flex flex-row bg-white shadow-inner items-center rounded-md overflow-hidden w-fit dark:bg-zinc-800/50">
                                                 <div className="bg-gray-200 dark:bg-zinc-800 h-full flex items-center p-2 px-3">
                                                     <p className="text-base dark:text-white/80 uppercase">Subject</p>
                                                 </div>
                                                 <p className="p-2 text-base text-gray-700 dark:text-white/90 uppercase font-medium">{data.subject}</p>
                                             </div>
-                                            <div className="flex flex-row bg-white shadow-inner items-center rounded-md overflow-hidden w-52 dark:bg-zinc-800/50">
+                                            <div className="flex flex-row bg-white shadow-inner items-center rounded-md overflow-hidden w-fit dark:bg-zinc-800/50">
                                                 <div className="bg-gray-200 dark:bg-zinc-800 h-full flex items-center p-2 px-3">
                                                     <p className="text-base dark:text-white/80 uppercase">Topic</p>
                                                 </div>
-                                                <p className="p-2 text-base text-gray-700 dark:text-white/90 uppercase font-medium">{data.topic}</p>
+                                                <p className="p-2 text-base text-gray-700 dark:text-white/90 uppercase font-medium ">{data.topic}</p>
                                             </div>
                                         </div>
 
@@ -95,7 +100,7 @@ export default function TestHistory() {
                                         </div>
 
                                     </div>
-                                    <textarea name="context" value={data.context} className="shadow-inner outline-gray-300 rounded-lg block resize-none p-4 w-full h-fit text-sm " placeholder="Input your context here..."></textarea>
+                                    <textarea name="context" onClick={handleResize} style={{ height: height }} value={data.context}  className="shadow-inner resize-none overflow-hidden outline-gray-300 rounded-lg block dark:bg-zinc-800/50 dark:text-white p-4 w-full text-sm " placeholder="Input your context here..."></textarea>
                                 </div>
                             </div>
                             <p className="font-medium mx-8 dark:text-white">MULTIPLE CHOICE TEST </p>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import{ useState } from "react";
 import { axiosRequest } from "api";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert2";
@@ -12,6 +12,7 @@ const initialState = {
 export default function ContextForm() {
   const [{ context, topic, subject }, setState] = useState(initialState);
   const [loading, setLoading] = useState(false);
+  const [height, setHeight] = useState('400px');
 
   const url = "/generate";
 
@@ -61,6 +62,10 @@ export default function ContextForm() {
     setState((prevState) => ({ ...prevState, [name]: value }));
   };
 
+  const handleResize = (event) => {
+    setHeight(event.target.scrollHeight);
+  }
+
   return (
     <div className="flex flex-col m-8 gap-y-10 items-center ">
       <div className=" flex flex-col w-full  space-y-5 items-center">
@@ -83,9 +88,11 @@ export default function ContextForm() {
         <textarea
           name="context"
           onChange={(event) => onChange(event)}
+          onClick={handleResize} 
+          style={{ height: height }}
           value={context}
           rows="18"
-          className="focus:outline focus:outline-offset-2 focus:outline-white/50 text-xl shadow-inner  rounded-lg block resize-none p-2.5 w-full h-full dark:bg-zinc-800/50 dark:text-white placeholder:dark:text-white/50"
+          className="focus:outline focus:outline-offset-2 focus:outline-white/50 text-xl shadow-inner  rounded-lg block resize-none p-4 w-full h-96 dark:bg-zinc-800/50 dark:text-white placeholder:dark:text-white/50"
           placeholder="Input your context here..."
         ></textarea>
         <button

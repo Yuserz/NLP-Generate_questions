@@ -2,6 +2,7 @@ import { Header, Navbar } from "components";
 import { useEffect } from 'react'
 import { axiosRequest } from "api";
 import { useNavigate } from "react-router-dom";
+
 export default function Topics() {
   const navigate = useNavigate()
   useEffect(() => {
@@ -22,10 +23,10 @@ export default function Topics() {
     <a
       target="_blank"
       href={topic.url}
-      className="flex uppercase items-center justify-between min-w-fit text-base h-20 rounded-xl shadow text-gray-600 font-semibold px-5 py-2.5 dark:bg-gray-300 dark:hover:bg-amber-300 focus:outline-none dark:focus:ring-amber-400"
+      className="flex uppercase dark:bg-zinc-600 dark:text-white bg-gray-200 items-center justify-between min-w-fit text-base h-20 rounded-xl shadow text-gray-600 font-semibold px-5 py-2.5 dark:hover:bg-gray-700 hover:bg-amber-300 focus:outline-none dark:focus:ring-amber-400 focus:ring-amber-400"
     >
       {topic.title}
-      <div className=" flex rounded-lg overflow-hidden h-full min-w-fit items-center shadow-md border"><img className=" w-[100px] h-full rounded-md" src={topic.logoUrl} /></div>
+      <div className=" flex rounded-lg overflow-hidden h-full min-w-fit items-center shadow-md border dark:border-none"><img className=" w-[100px] h-full rounded-md" src={topic.logoUrl} /></div>
     </a>
   );
 
@@ -87,10 +88,10 @@ export default function Topics() {
       <Header />
       <div className="m-auto h-full flex justify-between">
         <Navbar />
-        <div className="flex w-full p-2 h-full justify-center bg-amber-200">
-          <div className="flex flex-col mt-10 mb-10 gap-10 w-3/4 bg-white p-10 pr-20 pl-20 h-fit justify-between shadow-md rounded-xl">
+        <div className="flex w-full p-2 h-full justify-center bg-amber-200 dark:bg-zinc-700">
+          <div className="flex flex-col mt-10 mb-10 gap-10 w-3/4 bg-white dark:bg-zinc-800/50 p-10 pr-20 pl-20 h-fit justify-between shadow-md rounded-xl">
             <div className="flex justify-evenly">
-              <div className="w-full select-none p-8 min-w-fit">
+              <div className="w-full select-none p-8 min-w-fit ">
                 <ul className="flex select-none flex-col gap-8">
                   {topicLinks.map((topic) => (
                     <TopicLink topic={topic} key={topic.title} />
