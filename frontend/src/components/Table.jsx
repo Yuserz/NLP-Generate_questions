@@ -1,7 +1,12 @@
 import React from "react"
 
 export default function Table({ data }) {
-    
+    const getDate = (date) => {
+        const options = { weekday: 'short', day: 'numeric', month: 'short', year: "numeric" };
+        const newDate = new Date(date).toLocaleDateString('en-US', options)
+        return <p>{newDate}</p>
+    }
+
     return (
         <div className="w-full select-none mx-auto">
             <div className="flex flex-col">
@@ -35,8 +40,8 @@ export default function Table({ data }) {
                                                 <tr key={context.id} className=" border border-gray-100">
                                                     <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-black opacity-50 uppercase">{context.subject}</td>
                                                     <td className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-black opacity-50 uppercase">{context.topic}</td>
-                                                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-black opacity-50">{context.score}</td>
-                                                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-black opacity-50">{context.dateCreated}</td>
+                                                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-black opacity-50">{context.score}/{context.total}</td>
+                                                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-black opacity-50">{getDate(context.dateCreated)}</td>
                                                     <td className="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
                                                         <a href={`/History/Test?id=${context.id}`} className="text-green-600 dark:text-green-500 hover:bg-green-300 bg-green-100  rounded-full pt-1 pb-1 pl-3 pr-3">View</a>
                                                     </td>

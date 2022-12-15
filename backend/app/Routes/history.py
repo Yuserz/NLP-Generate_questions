@@ -77,6 +77,7 @@ def history():
 
         for context in contexts:
             data = context.to_dict(exclude='user')
+            data['total'] = len(Question.query.filter_by(context=context.id).all())
             res.append(data)
 
         return Response(
