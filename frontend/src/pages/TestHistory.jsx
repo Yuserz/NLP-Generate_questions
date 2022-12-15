@@ -58,46 +58,49 @@ export default function TestHistory() {
             <Header />
             <div className="m-auto h-full flex justify-between">
                 <Navbar />
-                <div className=" w-full p-2 h-full bg-amber-200 ">
+                <div className=" w-full p-2 h-full bg-amber-200 dark:bg-zinc-700">
                     {data ?
                         <>
                             <div className="flex flex-col m-8 mt-2 gap-y-10 items-center ">
                                 <div className=" flex flex-col w-full space-y-5 items-center">
                                     <div className="flex flex-row justify-between w-full">
                                         <div className="flex flex-row gap-x-4 items-end">
-                                            <div className="flex flex-row bg-white shadow-inner items-center rounded-md overflow-hidden w-52">
-                                                <div className="bg-gray-200 h-full flex items-center p-2 px-3">
-                                                    <p className="text-base font-medium uppercase">Subject</p>
+                                            <div className="flex flex-row bg-white shadow-inner items-center rounded-md overflow-hidden w-52 dark:bg-zinc-800/50">
+                                                <div className="bg-gray-200 dark:bg-zinc-800 h-full flex items-center p-2 px-3">
+                                                    <p className="text-base dark:text-white/80 font-medium uppercase">Subject</p>
                                                 </div>
-                                                <p className="p-2 text-base text-gray-700 uppercase">{data.subject}</p>
+                                                <p className="p-2 text-base text-gray-700 dark:text-white/90 uppercase">{data.subject}</p>
                                             </div>
-                                            <div className="flex flex-row shadow-inner bg-white items-center rounded-md overflow-hidden w-52">
-                                                <div className="bg-gray-200 h-full flex items-center p-2 px-3">
-                                                    <p className="text-base font-medium uppercase">Topic</p>
+                                            <div className="flex flex-row bg-white shadow-inner items-center rounded-md overflow-hidden w-52 dark:bg-zinc-800/50">
+                                                <div className="bg-gray-200 dark:bg-zinc-800 h-full flex items-center p-2 px-3">
+                                                    <p className="text-base dark:text-white/80 font-medium uppercase">Topic</p>
                                                 </div>
-                                                <p className="p-2 text-base text-gray-700 uppercase">{data.topic}</p>
+                                                <p className="p-2 text-base text-gray-700 dark:text-white/90 uppercase">{data.topic}</p>
                                             </div>
                                         </div>
 
-                                        <div className="flex flex-col gap-y-3 justify-end w-32">
-                                            <button onClick={retake} className="bg-green-300 rounded-lg px-5 py-2 font-bold shadow">Retake Test</button>
+                                        <div className="flex flex-col gap-y-3 justify-end w-30">
+                                            <button onClick={retake} className="bg-green-300 text-green-800 dark:bg-green-600 dark:text-white rounded-lg px-5 py-2 font-bold shadow">Retake Test</button>
                                             <div className="flex flex-col">
-                                                <div className="flex flex-row shadow-inner bg-white items-center rounded-md overflow-hidden">
-                                                    <div className="bg-gray-200 h-full flex items-center p-2 px-3">
-                                                        <p className="text-base font-medium uppercase">Score</p>
+                                                <div className="flex flex-row shadow-inner bg-white items-center rounded-md overflow-hidden dark:bg-zinc-800/50">
+                                                    <div className="bg-gray-200 h-full flex items-center p-2 px-3 dark:bg-zinc-800">
+                                                        <p className="text-base font-medium uppercase dark:text-white/80">Score</p>
                                                     </div>
-                                                    <p className="p-2 text-base text-gray-700">{data.score}/{questions.length}</p>
+                                                    <div className="w-full items-center justify-center flex">
+                                                        <p className="p-2 text-base text-gray-700 dark:text-white/90">{data.score}/{questions.length}</p>
+                                                    </div>
+
                                                 </div>
                                             </div>
 
                                         </div>
 
                                     </div>
-                                    <textarea name="context" value={data.context}  className="shadow-inner outline-gray-300 rounded-lg block resize-none p-4 w-full h-fit text-sm " placeholder="Input your context here..."></textarea>
+                                    <textarea name="context" value={data.context} className="shadow-inner outline-gray-300 rounded-lg block resize-none p-4 w-full h-fit text-sm " placeholder="Input your context here..."></textarea>
                                 </div>
                             </div>
-                            <p className="font-medium mx-8">MULTIPLE CHOICE TEST </p>
-                            <div className="flex flex-col  mx-8 mt-2 gap-y-3 h-fit bg-white rounded-lg p-10 ">
+                            <p className="font-medium mx-8 dark:text-white">MULTIPLE CHOICE TEST </p>
+                            <div className="flex flex-col  mx-8 mt-2 gap-y-3 h-fit bg-white dark:bg-zinc-800/50 rounded-lg p-10 dark:text-white">
                                 {questions.map((question, index) => {
                                     return (
                                         <div key={index} className="flex flex-col gap-y-5">
@@ -115,16 +118,16 @@ export default function TestHistory() {
                                                             />
 
                                                             <label htmlFor={`c-${index}-${i}`}
-                                                                className={`rounded border flex flex-row justify-between  items-center w-full
-                                                ${question.userAnswer === choice && question.answer === question.userAnswer ? 'bg-green-100' : question.userAnswer === choice ? 'bg-red-100' : ""}
-                                                ${question.userAnswer !== choice && question.answer === choice ? 'border-green-300' : ''}
+                                                                className={`rounded border dark:border-white/25 flex flex-row justify-between  items-center w-full
+                                                ${question.userAnswer === choice && question.answer === question.userAnswer ? 'bg-green-100 dark:bg-green-700/25' : question.userAnswer === choice ? 'bg-red-100 dark:bg-red-700/25' : ""}
+                                                ${question.userAnswer !== choice && question.answer === choice ? 'border-green-300 dark:border-green-700' : ''}
                                                 `}
                                                             >
 
                                                                 <div className="flex flex-row gap-x-3">
-                                                                    <p className={`bg-gray-100 py-2 px-5 font-medium
-                                                    ${question.userAnswer === choice && question.answer === question.userAnswer ? 'bg-green-300' : question.userAnswer === choice ? 'bg-red-300' : ""}
-                                                    ${question.answer === choice && question.userAnswer !== choice ? 'bg-green-300' : ''}
+                                                                    <p className={`bg-gray-100 dark:bg-zinc-700 py-2 px-5 font-medium
+                                                    ${question.userAnswer === choice && question.answer === question.userAnswer ? 'bg-green-300 dark:bg-green-700/75' : question.userAnswer === choice ? 'bg-red-300 dark:bg-red-700/50' : ""}
+                                                    ${question.answer === choice && question.userAnswer !== choice ? 'bg-green-300 dark:bg-green-700/75' : ''}
                                                     `}
                                                                     >
                                                                         {getLetter(i)}</p>
