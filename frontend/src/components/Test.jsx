@@ -135,15 +135,15 @@ export default function Test({ subject, topic, context, questions, conID}) {
     return (
         <div className="flex flex-col gap-y-5 items-center">
             {showModal ?
-                <div className="w-full h-full bg-black/25 fixed top-0 left-0 right-0 z-50 flex flex-col justify-center items-center">
-                    <div className="flex flex-col bg-white rounded text-center">
+                <div className="w-full h-full bg-black/25 dark:bg-black/50 fixed top-0 left-0 right-0 z-50 flex flex-col justify-center items-center">
+                    <div className="flex flex-col bg-white dark:bg-zinc-700 rounded text-center">
                         <div className="flex justify-end px-2 pt-2">
                             <button onClick={confirm}>
                                 <X className="text-gray-400 w-5" />
                             </button>
                         </div>
-                        <div className="px-10 py-4">
-                            <div className="flex flex-row gap-x-2 text-amber-300">
+                        <div className="px-10 py-4 dark:text-white">
+                            <div className="flex flex-row gap-x-2 text-amber-300 justify-center min-w-[200px]">
                                 {Object.keys(correct).map((key, index) => {
                                     if (index < score) { return <Star size={40} fill="#FCD34D" key={index} /> }
                                     else { return <Star size={40} key={index} /> }
@@ -153,15 +153,15 @@ export default function Test({ subject, topic, context, questions, conID}) {
                             <p className="text-3xl font-bold">{score} out of {Object.keys(questions).length}</p>
                         </div>
                         <div className="flex flex-col gap-y-2 justify-center p-3">
-                            <button onClick={retake} className="bg-blue-500 rounded px-4 py-2 text-white">RETAKE</button>
-                            <button onClick={confirm} className="bg-green-500 rounded px-4 py-2 text-white">CONTINUE</button>
+                            <button onClick={retake} className="bg-blue-500 rounded px-4 py-2 text-white dark:bg-blue-600">RETAKE</button>
+                            <button onClick={confirm} className="bg-green-500 rounded px-4 py-2 text-white dark:bg-green-600">CONTINUE</button>
                         </div>
                     </div>
                 </div>
                 : null
             }
 
-            <div className=" w-full max-w-[900px] flex flex-col gap-y-3 h-fit bg-white rounded-lg p-10">
+            <div className=" w-full max-w-[900px] flex flex-col gap-y-3 h-fit bg-white  dark:bg-zinc-800/50 rounded-lg p-10 dark:text-white">
                 {questions.map((question, index) => {
                     return (
                         <div key={index} className="flex flex-col gap-y-5">
@@ -180,19 +180,19 @@ export default function Test({ subject, topic, context, questions, conID}) {
                                             />
 
                                             <label htmlFor={`c-${index}-${i}`}
-                                                className={`rounded border flex flex-row justify-between  items-center w-full
-                                                ${selected[index] === choice && !isSubmit ? 'bg-blue-100' : ""}
-                                                ${correct[index] && selected[index] === choice && isSubmit ? 'bg-green-100' : ''}
-                                                ${!correct[index] && selected[index] === choice && isSubmit ? 'bg-red-100' : ''}
-                                                ${!correct[index] && question.answer === choice && isSubmit ? 'border-green-300' : ''}
+                                                className={`rounded border dark:border-white/25 flex flex-row justify-between  items-center w-full
+                                                ${selected[index] === choice && !isSubmit ? 'bg-blue-700/25 dark:border-blue-700' : ""}
+                                                ${correct[index] && selected[index] === choice && isSubmit ? 'bg-green-100 dark:bg-green-700/25' : ''}
+                                                ${!correct[index] && selected[index] === choice && isSubmit ? 'bg-red-100 dark:bg-red-700/25' : ''}
+                                                ${!correct[index] && question.answer === choice && isSubmit ? 'border-green-300 dark:border-green-700' : ''}
                                                 `}
                                             >
-                                                <div className="flex flex-row gap-x-3">
-                                                    <p className={`bg-gray-100 py-2 px-5 font-medium
-                                                    ${selected[index] === choice && !isSubmit ? 'bg-blue-300' : ""}
-                                                    ${correct[index] && selected[index] === choice && isSubmit ? 'bg-green-300' : ''}
-                                                    ${!correct[index] && selected[index] === choice && isSubmit ? 'bg-red-300' : ''}
-                                                    ${!correct[index] && question.answer === choice && isSubmit ? 'bg-green-300' : ''}
+                                                <div className="flex flex-row gap-x-3  ">
+                                                    <p className={`bg-gray-100 dark:bg-zinc-700 py-2 px-5 font-medium
+                                                    ${selected[index] === choice && !isSubmit ? 'bg-blue-300 dark:bg-blue-700/50' : ""}
+                                                    ${correct[index] && selected[index] === choice && isSubmit ? 'bg-green-300 dark:bg-green-700/75' : ''}
+                                                    ${!correct[index] && selected[index] === choice && isSubmit ? 'bg-red-300 dark:bg-red-700/50' : ''}
+                                                    ${!correct[index] && question.answer === choice && isSubmit ? 'bg-green-300 dark:bg-green-700/75' : ''}
                                                     `}
                                                     >
                                                         {getLetter(i)}</p>
@@ -218,15 +218,15 @@ export default function Test({ subject, topic, context, questions, conID}) {
                     !isSubmit ?
                         <button className={
                             (Object.keys(selected).length === questions.length) ?
-                                `rounded bg-blue-500 text-lg py-3 px-5 text-white hover:bg-blue-600`
-                                : `rounded border border-black text-lg py-3 px-5`
+                                `rounded bg-blue-500 text-lg py-3 px-5 text-white hover:bg-blue-600 dark:bg-blue-700`
+                                : `rounded border border-black/50 dark:border-white/50 text-lg py-3 px-5 dark:text-white/50 text-black/50`
                         }
                             onClick={submit}>
                             SUBMIT ANSWER
                         </button>
                         : <div className="flex flex-col gap-y-3">
                             {/* <button className="rounded bg-blue-500 text-lg py-3 px-5 text-white hover:bg-blue-600" onClick={retake}>RETAKE</button> */}
-                            <button className="rounded bg-green-500 text-lg py-3 px-5 text-white hover:bg-green-600" onClick={generate}>GENERATE NEW QUESTIONS</button>
+                            <button className="rounded bg-green-500 text-lg py-3 px-5 text-white hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-800" onClick={generate}>GENERATE NEW QUESTIONS</button>
                         </div>
 
                 }

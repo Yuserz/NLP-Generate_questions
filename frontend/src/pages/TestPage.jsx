@@ -17,11 +17,11 @@ export default function TestPage() {
     }, [location.state, navigate])
 
     return (
-        <div className="grid-container w-screen h-screen bg-slate-50">
+        <div className="h-screen bg-slate-50">
             <Header />
             <div className="m-auto flex justify-between">
                 <Navbar />
-                <div className=" w-screen p-10 bg-amber-200 ">
+                <div className="w-full p-10 bg-amber-200 dark:bg-zinc-700 ">
                     {isLoaded ?
                         <Test
                             subject={location.state.subject}
