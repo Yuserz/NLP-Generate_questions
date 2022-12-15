@@ -15,7 +15,7 @@ export default function Switcher() {
         <label class="inline-flex relative items-center cursor-pointer">
             <input type="checkbox" checked={check} onChange={toggleDarkMode} className="sr-only peer" />
             <div class="flex flex-row gap-x-1 p-1 justify-between items-center 
-                    w-16 h-7 bg-gray-200 dark:peer-focus:ring-blue-800 rounded-full peer bg-gray-300 
+                    w-16 h-7 dark:peer-focus:ring-blue-800 rounded-full peer bg-gray-300 
                     peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-0.5 
                     peer-checked:after:left-[11px]
                     peer-checked:after:bg-zinc-500 after:bg-white after:rounded-full after:h-6 

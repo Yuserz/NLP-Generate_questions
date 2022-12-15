@@ -26,7 +26,7 @@ export default function DropdownMenu() {
       </button>
       {isOpen && (
         <ul className="absolute mt-2  dropdown-menu rounded-md overflow-hidden no-wrap whitespace-nowrap shadow-md">
-          <div className="p-1 bg-white dark:hover:bg-white dark:hover:text-black dark:bg-black font-semibold hover:bg-red-400 hover:text-white dark:">
+          <div className="p-1 bg-white  dark:hover:bg-white dark:hover:text-black dark:bg-gray-600 font-semibold hover:bg-red-400 hover:text-white dark:">
             <button
               onClick={onClick}
               type="button"

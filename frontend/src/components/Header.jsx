@@ -2,7 +2,6 @@ import React from "react";
 import { Switcher, Dropdown } from "components";
 
 export default function Header() {
-
   return (
     <div className="bg-white dark:text-white dark:bg-zinc-800 p-4  select-none relative flex shadow-md justify-between items-center h-24 m-auto">
       <div className="flex justify-between items-center space-x-4">
@@ -15,8 +14,10 @@ export default function Header() {
           ALONE NO MORE, I WILL BE YOUR STUDY BUDDY!
         </h1>
       </div>
-      <Switcher />
-      <Dropdown /> 
+      <div className="flex gap-5">
+        <div className="flex h-fit m-auto item-center"><Switcher /></div>
+        <Dropdown />
+      </div>
     </div>
   );
 }
