@@ -137,11 +137,6 @@ export default function Test({ subject, topic, context, questions, conID}) {
             {showModal ?
                 <div className="w-full h-full bg-black/25 dark:bg-black/50 fixed top-0 left-0 right-0 z-50 flex flex-col justify-center items-center">
                     <div className="flex flex-col bg-white dark:bg-zinc-700 rounded text-center">
-                        <div className="flex justify-end px-2 pt-2">
-                            <button onClick={confirm}>
-                                <X className="text-gray-400 w-5" />
-                            </button>
-                        </div>
                         <div className="px-10 py-4 dark:text-white">
                             <div className="flex flex-row gap-x-2 text-amber-300 justify-center min-w-[200px]">
                                 {Object.keys(correct).map((key, index) => {
