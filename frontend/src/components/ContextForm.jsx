@@ -65,31 +65,27 @@ export default function ContextForm() {
     <div className="flex flex-col m-8 gap-y-10 items-center ">
       <div className=" flex flex-col w-full  space-y-5 items-center">
         <div className="flex space-x-4 w-full">
-          <textarea
+          <input type='text'
             name="subject"
             value={subject}
             onChange={(event) => onChange(event)}
-            cols="20"
-            rows="1"
             placeholder="Subject"
-            className="focus:border-transparent focus:ring-0 font-medium shadow-inner h-full  resize-none p-2 rounded-lg dark:bg-zinc-800/50 dark:text-white placeholder:dark:text-white/50"
-          ></textarea>
-          <textarea
+            className="font-medium p-2 focus:outline focus:outline-offset-2 focus:outline-white/50 shadow-inner rounded-lg dark:bg-zinc-800/50 dark:text-white placeholder:dark:text-white/50"
+          ></input>
+          <input type='text'
             name="topic"
             value={topic}
             onChange={(event) => onChange(event)}
-            cols="20"
-            rows="1"
             placeholder="Topic"
-            className="focus:border-transparent focus:ring-0 font-medium shadow-inner  resize-none p-2 rounded-lg dark:bg-zinc-800/50 dark:text-white placeholder:dark:text-white/50"
-          ></textarea>
+            className="font-medium p-2 focus:outline focus:outline-offset-2 focus:outline-white/50 shadow-inner rounded-lg dark:bg-zinc-800/50 dark:text-white placeholder:dark:text-white/50"
+          ></input>
         </div>
         <textarea
           name="context"
           onChange={(event) => onChange(event)}
           value={context}
           rows="18"
-          className="focus:border-transparent focus:ring-0 text-xl shadow-inner  rounded-lg block resize-none p-2.5 w-full h-full dark:bg-zinc-800/50 dark:text-white placeholder:dark:text-white/50"
+          className="focus:outline focus:outline-offset-2 focus:outline-white/50 text-xl shadow-inner  rounded-lg block resize-none p-2.5 w-full h-full dark:bg-zinc-800/50 dark:text-white placeholder:dark:text-white/50"
           placeholder="Input your context here..."
         ></textarea>
         <button
