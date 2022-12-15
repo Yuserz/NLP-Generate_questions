@@ -71,12 +71,12 @@ const initialState = {
   }
 
   return (
-    <div className="flex items-center justify-evenly m-auto pl-5 pr-5 max-w-[1240px] h-screen">
-      <div className="w-[50%]"><img src="./images/logo.png" alt="logo" /></div>
+    <div className="flex items-center justify-evenly  m-auto pl-5 pr-5 max-w-[1240px] h-screen">
+      <div className="w-[50%] select-none"><img src="./images/logo.png" alt="logo" /></div>
       <div className="flex items-center justify-center w-[50%] h-[80%] p-10 bg-amber-200 rounded-xl">
       <form className="m-w-[50%] w-[400px] h-fit" onSubmit={(event) => onSubmit(event)}>
         <div className="py-8">
-          <h1 className="text-4xl font-bold my-2">
+          <h1 className="text-4xl font-bold my-2 select-none">
             Study Budy
           </h1>
         </div>
