@@ -19,11 +19,11 @@ export default function Home() {
     }, [])
 
     return (
-        <div className="grid-container h-screen  bg-slate-50">
+        <div className="grid-container max-h-full bg-slate-50">
             <Header />
             <div className="h-full flex justify-between">
                 <Navbar />
-                <div className="w-full bg-amber-200 ">
+                <div className="w-full bg-amber-200 dark:bg-zinc-700">
                     <ContextForm />
                 </div>
             </div>

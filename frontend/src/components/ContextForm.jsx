@@ -63,7 +63,7 @@ export default function ContextForm() {
 
   return (
     <div className="flex flex-col m-8 gap-y-10 items-center ">
-      <div className=" flex flex-col w-full space-y-5 items-center">
+      <div className=" flex flex-col w-full  space-y-5 items-center">
         <div className="flex space-x-4 w-full">
           <textarea
             name="subject"
@@ -72,7 +72,7 @@ export default function ContextForm() {
             cols="20"
             rows="1"
             placeholder="Subject"
-            className="shadow-inner h-full outline-gray-300 resize-none p-2 rounded-lg"
+            className="focus:border-transparent focus:ring-0 font-medium shadow-inner h-full  resize-none p-2 rounded-lg dark:bg-zinc-800/50 dark:text-white placeholder:dark:text-white/50"
           ></textarea>
           <textarea
             name="topic"
@@ -81,7 +81,7 @@ export default function ContextForm() {
             cols="20"
             rows="1"
             placeholder="Topic"
-            className="shadow-inner outline-gray-300 resize-none p-2 rounded-lg"
+            className="focus:border-transparent focus:ring-0 font-medium shadow-inner  resize-none p-2 rounded-lg dark:bg-zinc-800/50 dark:text-white placeholder:dark:text-white/50"
           ></textarea>
         </div>
         <textarea
@@ -89,12 +89,12 @@ export default function ContextForm() {
           onChange={(event) => onChange(event)}
           value={context}
           rows="18"
-          className="shadow-inner outline-gray-300 rounded-lg block resize-none p-2.5 w-full h-full text-sm "
+          className="focus:border-transparent focus:ring-0 text-xl shadow-inner  rounded-lg block resize-none p-2.5 w-full h-full dark:bg-zinc-800/50 dark:text-white placeholder:dark:text-white/50"
           placeholder="Input your context here..."
         ></textarea>
         <button
           onClick={generate}
-          className="p-4 bg-white w-fit rounded-lg drop-shadow-md"
+          className="p-4 bg-white dark:bg-zinc-800 dark:text-white w-fit rounded-lg drop-shadow-md"
         >
           {loading ? (
             <span>
