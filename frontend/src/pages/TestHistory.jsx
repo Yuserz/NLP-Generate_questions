@@ -65,14 +65,14 @@ export default function TestHistory() {
                                 <div className=" flex flex-col w-full space-y-5 items-center">
                                     <div className="flex flex-row justify-between w-full">
                                         <div className="flex flex-row gap-x-4 items-end">
-                                            <div className="flex flex-row bg-white items-center rounded-md overflow-hidden w-52">
-                                                <div className="bg-gray-400 h-full flex items-center p-2 px-3">
+                                            <div className="flex flex-row bg-white shadow-inner items-center rounded-md overflow-hidden w-52">
+                                                <div className="bg-gray-200 h-full flex items-center p-2 px-3">
                                                     <p className="text-base font-medium uppercase">Subject</p>
                                                 </div>
                                                 <p className="p-2 text-base text-gray-700 uppercase">{data.subject}</p>
                                             </div>
-                                            <div className="flex flex-row bg-white items-center rounded-md overflow-hidden w-52">
-                                                <div className="bg-gray-400 h-full flex items-center p-2 px-3">
+                                            <div className="flex flex-row shadow-inner bg-white items-center rounded-md overflow-hidden w-52">
+                                                <div className="bg-gray-200 h-full flex items-center p-2 px-3">
                                                     <p className="text-base font-medium uppercase">Topic</p>
                                                 </div>
                                                 <p className="p-2 text-base text-gray-700 uppercase">{data.topic}</p>
@@ -80,10 +80,10 @@ export default function TestHistory() {
                                         </div>
 
                                         <div className="flex flex-col gap-y-3 justify-end w-32">
-                                            <button onClick={retake} className="bg-green-300 rounded-lg px-5 py-2 font-bold">Retake Test</button>
+                                            <button onClick={retake} className="bg-green-300 rounded-lg px-5 py-2 font-bold shadow">Retake Test</button>
                                             <div className="flex flex-col">
-                                                <div className="flex flex-row bg-white items-center rounded-md overflow-hidden">
-                                                    <div className="bg-gray-400 h-full flex items-center p-2 px-3">
+                                                <div className="flex flex-row shadow-inner bg-white items-center rounded-md overflow-hidden">
+                                                    <div className="bg-gray-200 h-full flex items-center p-2 px-3">
                                                         <p className="text-base font-medium uppercase">Score</p>
                                                     </div>
                                                     <p className="p-2 text-base text-gray-700">{data.score}/{questions.length}</p>
