@@ -149,7 +149,7 @@ export default function Test({ subject, topic, context, questions, conID}) {
                         </div>
                         <div className="flex flex-col gap-y-2 justify-center p-3">
                             <button onClick={retake} className="bg-blue-500 rounded px-4 py-2 text-white dark:bg-blue-600">RETAKE</button>
-                            <button onClick={confirm} className="bg-green-500 rounded px-4 py-2 text-white dark:bg-green-600">CONTINUE</button>
+                            <button onClick={confirm} className="bg-green-500 rounded px-4 py-2 text-white dark:bg-green-600">REVIEW</button>
                         </div>
                     </div>
                 </div>
@@ -214,14 +214,14 @@ export default function Test({ subject, topic, context, questions, conID}) {
                         <button className={
                             (Object.keys(selected).length === questions.length) ?
                                 `rounded bg-blue-500 text-lg py-3 px-5 text-white hover:bg-blue-600 dark:bg-blue-700`
-                                : `rounded border border-black/50 dark:border-white/50 text-lg py-3 px-5 dark:text-white/50 text-black/50`
+                                : `rounded border border-black/50 dark:border-white/50 text-lg py-3 px-5 dark:text-white/50 text-black/50 cursor-default`
                         }
                             onClick={submit}>
                             SUBMIT ANSWER
                         </button>
                         : <div className="flex flex-col gap-y-3">
                             {/* <button className="rounded bg-blue-500 text-lg py-3 px-5 text-white hover:bg-blue-600" onClick={retake}>RETAKE</button> */}
-                            <button className="rounded bg-green-500 text-lg py-3 px-5 text-white hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-800" onClick={generate}>GENERATE NEW QUESTIONS</button>
+                            {/* <button className="rounded bg-green-500 text-lg py-3 px-5 text-white hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-800" onClick={generate}>GENERATE NEW QUESTIONS</button> */}
                         </div>
 
                 }
