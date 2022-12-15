@@ -50,9 +50,9 @@ export default function History() {
             <div>
                 <Header />
             </div>
-            <div className="flex h-full overflow-y-scroll">
+            <div className="flex h-full">
                 <Navbar />
-                <div className="w-screen h-full  bg-amber-200 dark:bg-zinc-700 outline-none p-10 pr-10 ">
+                <div className="w-screen overflow-y bg-amber-200 dark:bg-zinc-700 outline-none p-10 pr-10 ">
                     <Table data={data} />
                 </div>
             </div>
