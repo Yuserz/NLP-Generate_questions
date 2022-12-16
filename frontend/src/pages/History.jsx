@@ -35,18 +35,7 @@ export default function History() {
     }, [])
 
     return (
-        // <div className="grid-container bg-slate-50">
-        //     <Header />
-        //         <div className="m-auto h-full min-h-screen flex justify-between">
-        //             <Navbar />
-        //             <div className="flex flex-col gap-5 items-center w-screen bg-amber-200 dark:bg-zinc-700">
-        //                 <div className="outline-none w-full pl-10 pr-10 m-10">
-        //                     <Table data={data} />
-        //                 </div>
-        //             </div>
-        //         </div>
-        // </div>
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col h-screen">
             <div>
                 <Header />
             </div>

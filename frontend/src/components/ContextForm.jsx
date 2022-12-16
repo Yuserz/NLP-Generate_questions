@@ -54,6 +54,7 @@ export default function ContextForm() {
         text: "Please remove special symbols or simplify the context first",
         icon: "error",
       });
+      setLoading(false);
     }
   };
 
