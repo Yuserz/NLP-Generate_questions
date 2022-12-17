@@ -50,8 +50,8 @@ export default function ContextForm() {
     } catch (e) {
       const { data } = e.response;
       swal.fire({
-        title: "Error when generating questions!",
-        text: "Please remove special symbols or simplify the context first",
+        title: "Error!",
+        text: "An error has occurred while generating questions and answers for the current context. Please try other context. If error still persists, contact the programmers.",
         icon: "error",
       });
       setLoading(false);
