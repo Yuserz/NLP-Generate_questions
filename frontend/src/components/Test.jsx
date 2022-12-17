@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { Component, useEffect, useState } from "react";
 import { Check, X, Star } from "react-feather";
 import { useNavigate } from "react-router-dom";
 import { axiosRequest } from "api";
+import { StarRating } from "components";
 import swal from "sweetalert2";
 
 export default function Test({ subject, topic, context, questions, conID }) {
@@ -133,6 +134,9 @@ export default function Test({ subject, topic, context, questions, conID }) {
 
   const minStars = Math.min(score, 5);
   const maxStars = Math.max(score, 5);
+  
+//   const rating = 4.5;
+//   const maxRating = 5;
 
   return (
     <div className="flex flex-col gap-y-5 items-center">
@@ -141,7 +145,10 @@ export default function Test({ subject, topic, context, questions, conID }) {
           <div className="flex flex-col bg-white dark:bg-zinc-700 rounded text-center">
             <div className="px-10 py-4 dark:text-white">
               <div className="flex flex-row gap-x-2 text-amber-300 justify-center min-w-[200px]">
-                {Object.keys(correct).map((key, index) => {
+                
+                <StarRating correctAnswers={score} totalQuestions={Object.keys(questions).length} />     
+
+                {/* {Object.keys(correct).map((key, index) => {
                   if (index < minStars) {
                     return <Star size={40} fill="#FCD34D" key={index} />;
                   } else if (index < maxStars && index < 5) {
@@ -149,7 +156,7 @@ export default function Test({ subject, topic, context, questions, conID }) {
                   } else {
                     return null;
                   }
-                })}
+                })} */}
               </div>
               <p className="text-base mt-3">You've got a</p>
               <p className="text-3xl font-bold">
