@@ -12,6 +12,7 @@ export default function Test({ subject, topic, context, questions, conID }) {
   const [selected, setSelected] = useState([]);
   const [correct, setCorrect] = useState([]);
   const [score, setScore] = useState(0);
+  const [percent, setPercent] = useState(0)
   const [isSubmit, setSubmit] = useState(false);
 
   const [showModal, setModal] = useState(false);
@@ -69,7 +70,10 @@ export default function Test({ subject, topic, context, questions, conID }) {
         if (correct[key]) totalScore += 1;
       });
 
-      setScore(totalScore);
+      const percentage = Math.ceil((totalScore / Object.keys(questions).length) * 100);
+
+      setScore(totalScore)
+      setPercent(percentage)
       setModal(true);
     }
   };
@@ -132,11 +136,6 @@ export default function Test({ subject, topic, context, questions, conID }) {
     navigate("/Home", { replace: true });
   };
 
-  const minStars = Math.min(score, 5);
-  const maxStars = Math.max(score, 5);
-  
-//   const rating = 4.5;
-//   const maxRating = 5;
 
   return (
     <div className="flex flex-col gap-y-5 items-center">
@@ -158,9 +157,9 @@ export default function Test({ subject, topic, context, questions, conID }) {
                   }
                 })} */}
               </div>
-              <p className="text-base mt-3">You've got a</p>
+              <p className="text-base mt-3">You've got</p>
               <p className="text-3xl font-bold">
-                {score} out of {Object.keys(questions).length}
+                {percent}%
               </p>
             </div>
             <div className="flex flex-col gap-y-2 justify-center p-3">
