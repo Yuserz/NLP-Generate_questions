@@ -2,34 +2,33 @@ import React from 'react';
 
 export default function StarRating({ correctAnswers, totalQuestions }) {
   const percentage = (correctAnswers / totalQuestions) * 100;
-  const starRating = Math.ceil(percentage / 20);
-  const halfOffset = Math.ceil(100 - percentage)
-  const endOffset  = 100 - halfOffset
-  
+  const starRating = Math.floor(percentage / 20);
+  const halfOffset = Math.ceil(((percentage / 20) % starRating) * 100)
+
   return (
     <div className="flex items-center">
       {[...Array(5).keys()].map((_, index) => {
         return (
-          <svg xmlns="http://www.w3.org/2000/svg" className="w-10 h-10">
+          <svg xmlns="http://www.w3.org/2000/svg" className="w-10 h-10" key={index}>
             <defs>
               {percentage > (index / 5) * 100 ?
-                starRating === index + 1 ?
+                starRating + 1 === index + 1 ?
                   <linearGradient id={`grad-${index}`}>
-                    <stop offset={`${halfOffset}%`} stop-color="#FCD34D" />
-                    <stop offset={`${endOffset}%`} stop-color="grey" />
+                    <stop offset={`${halfOffset}%`} stopColor="#FCD34D" />
+                    <stop offset={`${halfOffset}%`} stopColor="grey" />
                   </linearGradient>
                   :
                   starRating > index ?
-                  <linearGradient id={`grad-${index}`}>
-                    <stop offset="100%" stop-color="#FCD34D" />
-                  </linearGradient>
-                  :
-                  <linearGradient id={`grad-${index}`}>
-                    <stop offset="100%" stop-color="grey" />
-                  </linearGradient>
+                    <linearGradient id={`grad-${index}`}>
+                      <stop offset="100%" stopColor="#FCD34D" />
+                    </linearGradient>
+                    :
+                    <linearGradient id={`grad-${index}`}>
+                      <stop offset="100%" stopColor="grey" />
+                    </linearGradient>
                 :
                 <linearGradient id={`grad-${index}`}>
-                  <stop offset="100%" stop-color="grey" />
+                  <stop offset="100%" stopColor="grey" />
                 </linearGradient>
               }
 
