@@ -21,8 +21,12 @@ AModel_name = "MaRiOrOsSi/t5-base-finetuned-question-answering"
 QModelAllenai, QModelThomas, AModel = None, None, None
 QTokenizer, ATokenizer = None, None
 
+Words = None
+
 def initialize():
     global QModelAllenai, AModel, QTokenizer, ATokenizer, QModelThomas
+    global Words
+
     print('Initializing t5 Models...')
     QModelAllenai = T5ForConditionalGeneration.from_pretrained(QModel_Allenai)
     QModelThomas = T5ForConditionalGeneration.from_pretrained(QModel_Thomas)
@@ -33,6 +37,9 @@ def initialize():
 
     nltk.download('punkt')
     nltk.download('averaged_perceptron_tagger')
+    nltk.download('words')
+
+    Words = set(nltk.corpus.words.words())
 
 def validateInitialization():
     if not QModelAllenai or not AModel or not QTokenizer or not ATokenizer:
@@ -210,6 +217,20 @@ def generate_Question_Thomas(context):
     questions = [question for question in getQuestionThomas(context) if question]
     
     return questions
+
+# # validate context
+# def validateContext(context):
+#     # split the sentences from the context
+#     sentences = tokenize.sent_tokenize(context)
+    
+#     for sentence in sentences:
+#         invalids = 0
+#         for word in sentence.split():
+#             if not word in Words:
+#                 invalids += 1
+#         if invalids == len(sentence.split()):
+#             return False
+#     return True
     
 def generate_QA(context):
     # check if all models are initialized
