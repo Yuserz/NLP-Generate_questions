@@ -14,7 +14,7 @@ export default function History() {
             const { status, data } = response
 
             if (status === 200) {
-                setData(data.data)
+                setData(data.data.sort((a, b) => (a.timestamp < b.timestamp ? 1 : -1)))
             }
         }
         showData();
@@ -26,7 +26,7 @@ export default function History() {
             const response = await axiosRequest.get('/login')
             const { status, data } = response
             if (status === 200) {
-                if (!data.data) {
+                if (!data.data.sort((a, b) => (a.timestamp < b.timestamp ? 1 : -1))) {
                     navigate('/')
                 }
             }
