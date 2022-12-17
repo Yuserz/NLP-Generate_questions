@@ -213,16 +213,14 @@ export default function Test({ subject, topic, context, questions, conID}) {
                     !isSubmit ?
                         <button className={
                             (Object.keys(selected).length === questions.length) ?
-                                `rounded bg-blue-500 text-lg py-3 px-5 text-white hover:bg-blue-600 dark:bg-blue-700`
-                                : `rounded border border-black/50 dark:border-white/50 text-lg py-3 px-5 dark:text-white/50 text-black/50 cursor-default`
+                                `rounded-lg bg-blue-500 text-lg py-3 px-5 text-white hover:bg-blue-600 dark:bg-blue-700`
+                                : `rounded-lg border-2 border-black/50 dark:border-white/50 text-lg py-3 px-5 dark:text-white/50 text-black/50 cursor-default`
                         }
                             onClick={submit}>
                             SUBMIT ANSWER
                         </button>
                         : <div className="flex flex-col gap-y-3">
-                            {/* <button className="rounded bg-blue-500 text-lg py-3 px-5 text-white hover:bg-blue-600" onClick={retake}>RETAKE</button> */}
-                            {/* <button className="rounded bg-green-500 text-lg py-3 px-5 text-white hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-800" onClick={generate}>GENERATE NEW QUESTIONS</button> */}
-                        </div>
+                          </div>
 
                 }
                 </div>
