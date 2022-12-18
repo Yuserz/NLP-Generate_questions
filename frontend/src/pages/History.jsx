@@ -35,7 +35,7 @@ export default function History() {
     }, [])
 
     return (
-        <div className="flex flex-col h-screen">
+        <div className="flex flex-col h-full min-h-screen">
             <div>
                 <Header />
             </div>
