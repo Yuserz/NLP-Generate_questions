@@ -118,7 +118,7 @@ export default function Test({ subject, topic, context, questions, conID }) {
       if (status === 201) {
         navigate(`/History/Test?id=${data.data.id}`, { replace: true });
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   const retake = () => {
@@ -140,27 +140,16 @@ export default function Test({ subject, topic, context, questions, conID }) {
   return (
     <div className="flex flex-col gap-y-5 items-center">
       {showModal ? (
-        <div className="w-full h-full bg-black/25 dark:bg-black/50 fixed top-0 left-0 right-0 z-50 flex flex-col justify-center items-center">
+        <div className="w-full h-full bg-black/25 dark:bg-black/50 fixed top-0 left-0 right-0 z-50 flex flex-col justify-center items-center min-w-[200px]">
           <div className="flex flex-col bg-white dark:bg-zinc-700 rounded text-center">
-            <div className="px-10 py-4 dark:text-white">
-              <div className="flex flex-row gap-x-2 text-amber-300 justify-center min-w-[200px]">
-                
-                <StarRating correctAnswers={score} totalQuestions={Object.keys(questions).length} />     
-
-                {/* {Object.keys(correct).map((key, index) => {
-                  if (index < minStars) {
-                    return <Star size={40} fill="#FCD34D" key={index} />;
-                  } else if (index < maxStars && index < 5) {
-                    return <Star size={40} key={index} />;
-                  } else {
-                    return null;
-                  }
-                })} */}
+            <div className="p-3 dark:text-white">
+              <div className="p-5 bg-zinc-800 rounded flex flex-col gap-y-1">
+                <StarRating correctAnswers={score} totalQuestions={Object.keys(questions).length} />
+                <p className="text-xl mt-2 text-white/80">YOUR SCORE</p>
+                <p className="text-5xl font-bold text-green-400">
+                  {percent}%
+                </p>
               </div>
-              <p className="text-base mt-3">You've got</p>
-              <p className="text-3xl font-bold">
-                {percent}%
-              </p>
             </div>
             <div className="flex flex-col gap-y-2 justify-center p-3">
               <button
@@ -207,68 +196,60 @@ export default function Test({ subject, topic, context, questions, conID }) {
                       <label
                         htmlFor={`c-${index}-${i}`}
                         className={`rounded border dark:border-white/25 flex flex-row justify-between  items-center w-full
-                                                ${
-                                                  selected[index] === choice &&
-                                                  !isSubmit
-                                                    ? "bg-blue-700/25 dark:border-blue-700"
-                                                    : ""
-                                                }
-                                                ${
-                                                  correct[index] &&
-                                                  selected[index] === choice &&
-                                                  isSubmit
-                                                    ? "bg-green-100 dark:bg-green-700/25"
-                                                    : ""
-                                                }
-                                                ${
-                                                  !correct[index] &&
-                                                  selected[index] === choice &&
-                                                  isSubmit
-                                                    ? "bg-red-100 dark:bg-red-700/25"
-                                                    : ""
-                                                }
-                                                ${
-                                                  !correct[index] &&
-                                                  question.answer === choice &&
-                                                  isSubmit
-                                                    ? "border-green-300 dark:border-green-700"
-                                                    : ""
-                                                }
+                                                ${selected[index] === choice &&
+                            !isSubmit
+                            ? "bg-blue-700/25 dark:border-blue-700"
+                            : ""
+                          }
+                                                ${correct[index] &&
+                            selected[index] === choice &&
+                            isSubmit
+                            ? "bg-green-100 dark:bg-green-700/25"
+                            : ""
+                          }
+                                                ${!correct[index] &&
+                            selected[index] === choice &&
+                            isSubmit
+                            ? "bg-red-100 dark:bg-red-700/25"
+                            : ""
+                          }
+                                                ${!correct[index] &&
+                            question.answer === choice &&
+                            isSubmit
+                            ? "border-green-300 dark:border-green-700"
+                            : ""
+                          }
                                                 `}
                       >
                         <div className="flex flex-row gap-x-3  ">
                           <p
                             className={`bg-gray-100 dark:bg-zinc-700 py-2 px-5 font-medium
-                                                    ${
-                                                      selected[index] ===
-                                                        choice && !isSubmit
-                                                        ? "bg-blue-300 dark:bg-blue-700/50"
-                                                        : ""
-                                                    }
-                                                    ${
-                                                      correct[index] &&
-                                                      selected[index] ===
-                                                        choice &&
-                                                      isSubmit
-                                                        ? "bg-green-300 dark:bg-green-700/75"
-                                                        : ""
-                                                    }
-                                                    ${
-                                                      !correct[index] &&
-                                                      selected[index] ===
-                                                        choice &&
-                                                      isSubmit
-                                                        ? "bg-red-300 dark:bg-red-700/50"
-                                                        : ""
-                                                    }
-                                                    ${
-                                                      !correct[index] &&
-                                                      question.answer ===
-                                                        choice &&
-                                                      isSubmit
-                                                        ? "bg-green-300 dark:bg-green-700/75"
-                                                        : ""
-                                                    }
+                                                    ${selected[index] ===
+                                choice && !isSubmit
+                                ? "bg-blue-300 dark:bg-blue-700/50"
+                                : ""
+                              }
+                                                    ${correct[index] &&
+                                selected[index] ===
+                                choice &&
+                                isSubmit
+                                ? "bg-green-300 dark:bg-green-700/75"
+                                : ""
+                              }
+                                                    ${!correct[index] &&
+                                selected[index] ===
+                                choice &&
+                                isSubmit
+                                ? "bg-red-300 dark:bg-red-700/50"
+                                : ""
+                              }
+                                                    ${!correct[index] &&
+                                question.answer ===
+                                choice &&
+                                isSubmit
+                                ? "bg-green-300 dark:bg-green-700/75"
+                                : ""
+                              }
                                                     `}
                           >
                             {getLetter(i)}

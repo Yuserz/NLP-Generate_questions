@@ -6,7 +6,7 @@ export default function StarRating({ correctAnswers, totalQuestions }) {
   const halfOffset = Math.ceil(((percentage / 20) % (starRating == 0 ? 1 : starRating) ) * 100)
 
   return (
-    <div className="flex items-center">
+    <div className="flex items-center gap-x-3">
       {[...Array(5).keys()].map((_, index) => {
         return (
           <svg xmlns="http://www.w3.org/2000/svg" className="w-10 h-10" key={index}>
@@ -34,7 +34,7 @@ export default function StarRating({ correctAnswers, totalQuestions }) {
 
             </defs>
             <path fill={`url(#grad-${index})`} d="M20.388,10.918L32,12.118l-8.735,7.749L25.914,31.4l-9.893-6.088L6.127,31.4l2.695-11.533L0,12.118
-  l11.547-1.2L16.026,0.6L20.388,10.918z"/>
+  l11.547-1.2L16.026,0.6L20.388,10.918z" className="scale-125"/>
           </svg>
         )
       })}
