@@ -1,24 +1,27 @@
 # Requirements, Usage and Installation
-<h1>## Backend - Flask</h1>
 
+### Prerequisite
+
+Node.js - "16.16.0"
+Python - "3.9"
+
+---------------------------------------------------------------------------------------
+<h1>## Backend - Flask</h1>
 ### 1. Access backend and create virtual Environtment
    
 ```cd backend```
 
 # Proceed to Number #2 when "venv" folder is already created  
 ```python -m venv venv```
-
-### if missing torch
-
-```pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu11 ```
-
-  
+ 
 ### 2 .Activate the environment
 
 ```venv/Scripts/activate```
 
 
-### 3 .Install the requirements
+### 3 .Install the backend dependencies
+
+```pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu11 ```
 
 ```pip install -r requirements.txt```
 
