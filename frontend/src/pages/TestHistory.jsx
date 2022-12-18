@@ -63,7 +63,7 @@ export default function TestHistory() {
       </div>
       <div className="flex h-full">
         <Navbar />
-        <div className="w-screen overflow-y h-full bg-amber-200 dark:bg-zinc-700 outline-none p-10 pr-10 ">
+        <div className="w-screen overflow-y min-h-screen h-full  bg-amber-200 dark:bg-zinc-700 outline-none p-10 pr-10 ">
           {data ? (
             <>
               <div className="flex flex-col m-8 mt-5 gap-y-10 items-center ">
