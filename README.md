@@ -1,46 +1,57 @@
 # Requirements, Usage and Installation
 
 ### Prerequisite
+```Node.js - v16.16.0```
 
-Node.js - "16.16.0"
-Python - "3.9"
+```Python - v3.9```
 
 ---------------------------------------------------------------------------------------
-<h1>## Backend - Flask</h1>
+<h1>Setup Backend - Flask</h1>
 
 ### 1. Access backend and create virtual Environtment
    
 ```cd backend```
 
-# Proceed to Number #2 when "venv" folder is already created  
+### 2. Setup virtual environment
+
 ```python -m venv venv```
  
-### 2 .Activate the environment
+### 3. Activate virtual environment
 
 ```venv/Scripts/activate```
 
+### 3 .Install dependencies
 
-### 3 .Install the backend dependencies
+```
+pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu11
+pip install -r requirements.txt
+```
 
-```pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu11 ```
+### 4. Setup database
 
-```pip install -r requirements.txt```
-
-### 4. Run the application 
-###First time setup
 ```
 flask db init
 flask db migrate
 flask db upgrade
-
 ```
 
-###Done setup
+<h1>Run Backend - Flask</h1>
+
+### 1. Access backend and create virtual Environtment
+   
+```cd backend```
+
+### 2. Activate the environment
+
+```venv/Scripts/activate```
+
+### 3. Run flask app
 
 ```flask run```
 
 -------------------------------------------------------------------------------------------------------------------
-<h1>## Frontend - React</h1>
+<h1>Frontend - React</h1>
+
 ### Installation
 
 You just need to install the packages listed on package.json, on the frontend folder.
