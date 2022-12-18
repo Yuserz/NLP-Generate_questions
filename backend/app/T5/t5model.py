@@ -21,8 +21,9 @@ AModel_name = "MaRiOrOsSi/t5-base-finetuned-question-answering"
 QModelAllenai, QModelThomas, AModel = None, None, None
 QTokenizer, ATokenizer = None, None
 
-Words = None
+# Words = None
 
+# load models to memory
 def initialize():
     global QModelAllenai, AModel, QTokenizer, ATokenizer, QModelThomas
     global Words
@@ -35,11 +36,16 @@ def initialize():
     AModel = AutoModelWithLMHead.from_pretrained(AModel_name)
     ATokenizer = AutoTokenizer.from_pretrained(AModel_name)
 
-    nltk.download('punkt')
-    nltk.download('averaged_perceptron_tagger')
-    nltk.download('words')
+    # check if nltk resources is available else download the resources
+    try:
+        nltk.data.find('tokenizers/punkt')
+        nltk.data.find('taggers/averaged_perceptron_tagger')
+    except LookupError:
+        nltk.download('punkt')
+        nltk.download('averaged_perceptron_tagger')
+        # nltk.download('words')
 
-    Words = set(nltk.corpus.words.words())
+    # Words = set(nltk.corpus.words.words())
 
 def validateInitialization():
     if not QModelAllenai or not AModel or not QTokenizer or not ATokenizer:
