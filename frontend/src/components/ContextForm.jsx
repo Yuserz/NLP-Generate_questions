@@ -47,14 +47,14 @@ export default function ContextForm() {
           },
         });
       }
-      // if (status === 204) {
-      //   swal.fire({
-      //     title: "Invalid Context!",
-      //     text: "Please input a valid context and try again...",
-      //     icon: "warning",
-      //   });
-      //   setLoading(false);
-      // }
+      if (status === 204) {
+        swal.fire({
+          title: "Invalid Context!",
+          text: "Please input a valid context and try again...",
+          icon: "warning",
+        });
+        setLoading(false);
+      }
     } catch (e) {
       const { data } = e.response;
       swal.fire({

@@ -11,19 +11,27 @@ def generate():
         req = request.get_json()
 
         try:
-            result = t5model.generate_QA(req['context'])
+            if t5model.validateContext(req['context']):
+                result = t5model.generate_QA(req['context'])
+
+                if not result:
+                    return Response(
+                    status=204
+                )
+
+                return Response(
+                    status=200,
+                    data=result
+                )
+            else:
+                return Response(
+                    status=204
+                )
+
         except Exception as e:
             return Response(
                 status=500,
                 data=str(e)
             )
 
-        if not result:
-            return Response(
-                status=200,
-            )
-
-        return Response(
-            status=200,
-            data=result
-        )
+        
