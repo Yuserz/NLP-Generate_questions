@@ -3,7 +3,7 @@ import React from 'react';
 export default function StarRating({ correctAnswers, totalQuestions }) {
   const percentage = (correctAnswers / totalQuestions) * 100;
   const starRating = Math.floor(percentage / 20);
-  const halfOffset = Math.ceil(((percentage / 20) % starRating) * 100)
+  const halfOffset = Math.ceil(((percentage / 20) % (starRating == 0 ? 1 : starRating) ) * 100)
 
   return (
     <div className="flex items-center">
