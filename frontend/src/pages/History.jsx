@@ -35,11 +35,11 @@ export default function History() {
     }, [])
 
     return (
-        <div className="flex flex-col h-full min-h-screen">
+        <div className="flex flex-col h-full min-h-full">
             <div>
                 <Header />
             </div>
-            <div className="flex h-full">
+            <div className="flex h-full min-h-screen">
                 <Navbar />
                 <div className="w-screen overflow-y bg-amber-200 dark:bg-zinc-700 outline-none p-10 pr-10 ">
                     <Table data={data} />
