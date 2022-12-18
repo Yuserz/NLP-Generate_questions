@@ -42,8 +42,8 @@ export default function ContextForm() {
           state: {
             data: data.data,
             context: context,
-            topic: topic,
-            subject: subject,
+            topic: topic.toUpperCase(),
+            subject: subject.toUpperCase(),
           },
         });
       }
@@ -81,14 +81,14 @@ export default function ContextForm() {
         <div className="flex space-x-4 w-full">
           <input type='text'
             name="subject"
-            value={subject}
+            value={subject.toUpperCase()}
             onChange={(event) => onChange(event)}
             placeholder="Subject"
             className="font-medium p-2 focus:outline focus:outline-offset-2 focus:outline-white/50 shadow-inner rounded-lg dark:bg-zinc-800/50 dark:text-white placeholder:dark:text-white/50"
           ></input>
           <input type='text'
             name="topic"
-            value={topic}
+            value={topic.toUpperCase()}
             onChange={(event) => onChange(event)}
             placeholder="Topic"
             className="font-medium p-2 focus:outline focus:outline-offset-2 focus:outline-white/50 shadow-inner rounded-lg dark:bg-zinc-800/50 dark:text-white placeholder:dark:text-white/50"
