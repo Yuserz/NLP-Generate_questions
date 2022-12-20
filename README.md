@@ -30,6 +30,8 @@ pip install -r requirements.txt
 ### 4. Setup database
 
 ```
+create a "intance" folder 1st at Backend folder
+
 flask db init
 flask db migrate
 flask db upgrade
