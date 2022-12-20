@@ -137,7 +137,9 @@ export default function Test({ subject, topic, context, questions, conID }) {
 
   const getFeedback = () => {
     switch (true) {
-      case percent >= 0 && percent <= 25:
+      case percent == 0:
+        return "Zero Score!";
+      case percent > 0 && percent <= 25:
         return "Fair Score!";
       case percent >= 26 && percent <= 50:
         return "Good Score!";
@@ -161,35 +163,37 @@ export default function Test({ subject, topic, context, questions, conID }) {
                   correctAnswers={score}
                   totalQuestions={Object.keys(questions).length}
                 />
-                <p className="text-xl dark:text-white/80">You've got a</p>
-                <p className="text-5xl font-bold dark:text-white">
-                  {/* Call a functin that returns a string feedback based on percentage */}
-                  {getFeedback()}
-                </p>
-                <div className="flex flex-row items-center gap-2">
-                  <div>
-                    <p className="text-2xl dark:text-white/80 font-bold">
-                      {score}
-                    </p>{" "}
-                  </div>
-                  <p className="text-xl dark:text-white/80"> out of</p>
-                  <div>
-                    <p className="text-2xl dark:text-white/80 font-bold">
-                      {Object.keys(questions).length}
-                    </p>{" "}
+                <div className="flex flex-col mt-3 items-center">
+                  <p className="text-xl dark:text-white/80 text-black/70" >You've got a</p>
+                  <p className="text-5xl font-bold dark:text-white">
+                    {/* Call a functin that returns a string feedback based on percentage */}
+                    {getFeedback()}
+                  </p>
+                  <div className="flex flex-row items-center gap-2">
+                    <div>
+                      <p className="text-2xl dark:text-white/80 text-black/70  font-bold">
+                        {score}
+                      </p>{" "}
+                    </div>
+                    <p className="text-xl dark:text-white/80 text-black/70" > out of</p>
+                    <div>
+                      <p className="text-2xl dark:text-white/80 text-black/70  font-bold">
+                        {Object.keys(questions).length}
+                      </p>{" "}
+                    </div>
                   </div>
                 </div>
               </div>
               <div className="flex flex-row dark:bg-zinc-800 gap-y-2 justify-evenly p-3">
                 <button
                   onClick={retake}
-                  className="bg-blue-500 rounded px-6 py-3 hover:dark:bg-white dark:text-black dark:font-bold dark:bg-white/80"
+                  className="bg-white border shadow-sm hover:shadow-md hover:font-bold rounded px-6 py-3 font-semibold hover:dark:bg-white dark:text-black dark:font-bold dark:bg-white/80"
                 >
                   RETAKE
                 </button>
                 <button
                   onClick={confirm}
-                  className="bg-green-500 rounded px-6 py-3 hover:dark:bg-white dark:text-black dark:font-bold dark:bg-white/80"
+                  className="bg-gwhite border shadow-sm hover:shadow-md hover:font-bold rounded px-6 py-3 font-semibold hover:dark:bg-white dark:text-black dark:font-bold dark:bg-white/80"
                 >
                   REVIEW
                 </button>
@@ -202,7 +206,7 @@ export default function Test({ subject, topic, context, questions, conID }) {
       <div className=" w-full max-w-[900px] flex flex-col gap-y-3 h-fit bg-white  dark:bg-zinc-800/50 rounded-lg p-10 dark:text-white">
         {questions.map((question, index) => {
           return (
-            <div key={index} className="flex flex-col gap-y-5">
+            <div key={index} className="flex flex-col gap-y-2 mb-5">
               <p className="font-medium">
                 {index + 1}. {question.question}
               </p>
